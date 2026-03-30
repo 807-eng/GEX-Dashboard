@@ -1,1 +1,99 @@
-<h1>GEX Dashboard</h1>
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GEX Dashboard 2026-03-30</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f9f9f7; color: #1a1a1a; padding: 1rem 1.25rem; }
+  h1 { font-size: 14px; font-weight: 500; color: #666; margin-bottom: 1.25rem; padding-bottom: 8px; border-bottom: 1px solid #e0e0e0; }
+  .block { margin-bottom: 1.75rem; }
+  .ticker-label { font-size: 13px; font-weight: 600; letter-spacing: 0.06em; color: #111; padding-bottom: 4px; border-bottom: 2px solid #ddd; margin-bottom: 2px; }
+  table { border-collapse: collapse; width: 100%; font-size: 12px; font-family: "SF Mono", "Fira Mono", "Consolas", monospace; }
+  th { font-size: 10.5px; font-weight: 500; color: #999; padding: 4px 10px; border-bottom: 1px solid #e8e8e8; text-align: left; cursor: pointer; user-select: none; white-space: nowrap; }
+  th:hover { color: #333; }
+  th.asc::after { content: ' ▲'; font-size: 8px; }
+  th.desc::after { content: ' ▼'; font-size: 8px; }
+  td { padding: 4px 10px; border-bottom: 1px solid #f0f0f0; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f4f4f2; }
+  .red { color: #8b1a1a; }
+  .grn { color: #2a5e1a; }
+  .muted { color: #888; }
+  .footer { font-size: 10px; color: #bbb; margin-top: 2rem; }
+</style>
+</head>
+<body>
+<h1>📊 GEX Dashboard &nbsp;&nbsp;2026-03-30 &nbsp;|&nbsp; Last updated: 2026-03-30 15:12 PST</h1>
+<div id="root"></div>
+<p class="footer">Auto-updated every 30 min during market hours</p>
+<script>
+const data = {"TSLA": [{"time": "15:12", "spot": 354.88, "gex_display": -454.7, "gex_unit": "M", "gex_at": 355.0, "mp": 357.5, "cw": 357.5, "pw": 355.0}], "NVDA": [{"time": "15:12", "spot": 165.14, "gex_display": -690.3, "gex_unit": "M", "gex_at": 165.0, "mp": 167.5, "cw": 170.0, "pw": 165.0}], "AAPL": [{"time": "15:12", "spot": 246.17, "gex_display": -25.8, "gex_unit": "M", "gex_at": 245.0, "mp": 247.5, "cw": 247.5, "pw": 245.0}], "MSFT": [{"time": "15:12", "spot": 358.96, "gex_display": 34.8, "gex_unit": "M", "gex_at": 360.0, "mp": 357.5, "cw": 360.0, "pw": 355.0}], "AMZN": [{"time": "15:12", "spot": 200.66, "gex_display": -28.4, "gex_unit": "M", "gex_at": 200.0, "mp": 202.5, "cw": 202.5, "pw": 200.0}], "GOOGL": [{"time": "15:12", "spot": 273.25, "gex_display": -18.5, "gex_unit": "M", "gex_at": 272.5, "mp": 277.5, "cw": 280.0, "pw": 272.5}], "META": [{"time": "15:12", "spot": 535.82, "gex_display": -19.3, "gex_unit": "M", "gex_at": 535.0, "mp": 537.5, "cw": 537.5, "pw": 535.0}], "SPY": [{"time": "15:12", "spot": 631.97, "gex_display": -870.6, "gex_unit": "M", "gex_at": 631.0, "mp": 636.0, "cw": 645.0, "pw": 631.0}], "QQQ": [{"time": "15:12", "spot": 558.28, "gex_display": -369.6, "gex_unit": "M", "gex_at": 557.0, "mp": 567.0, "cw": 574.0, "pw": 557.0}], "IWM": [{"time": "15:12", "spot": 239.45, "gex_display": -137.9, "gex_unit": "M", "gex_at": 240.0, "mp": 246.0, "cw": 249.0, "pw": 240.0}]};
+const order = ["TSLA", "NVDA", "AAPL", "MSFT", "AMZN", "GOOGL", "META", "SPY", "QQQ", "IWM"];
+
+function fmtGex(entry) {
+  const isRed = entry.gex_display < 0;
+  const abs = Math.abs(entry.gex_display);
+  const str = (isRed ? '-' : '+') + '$' + abs + entry.gex_unit + ' @$' + entry.gex_at;
+  return { cls: isRed ? 'red' : 'grn', dot: isRed ? '🔴' : '🟢', str };
+}
+
+const root = document.getElementById('root');
+
+order.forEach(ticker => {
+  const rows = data[ticker];
+  if (!rows || rows.length === 0) return;
+  let sortCol = 'time', sortDir = 1;
+  const tbodyId = 'tb_' + ticker;
+
+  const block = document.createElement('div');
+  block.className = 'block';
+  block.innerHTML = `
+    <div class="ticker-label">${ticker}</div>
+    <table>
+      <thead><tr>
+        <th data-col="time">時間</th>
+        <th data-col="spot">Price</th>
+        <th data-col="gex_display">GEX</th>
+        <th data-col="mp">MP</th>
+        <th data-col="cw">CW</th>
+        <th data-col="pw">PW</th>
+      </tr></thead>
+      <tbody id="${tbodyId}"></tbody>
+    </table>`;
+  root.appendChild(block);
+
+  function render(d) {
+    document.getElementById(tbodyId).innerHTML = d.map(r => {
+      const g = fmtGex(r);
+      return `<tr>
+        <td>${r.time}</td>
+        <td>$${r.spot.toFixed(2)}</td>
+        <td class="${g.cls}">${g.dot} ${g.str}</td>
+        <td class="muted">$${r.mp}</td>
+        <td class="muted">$${r.cw}</td>
+        <td class="muted">$${r.pw}</td>
+      </tr>`;
+    }).join('');
+  }
+
+  render(rows);
+
+  block.querySelectorAll('th').forEach(th => {
+    th.addEventListener('click', () => {
+      const col = th.dataset.col;
+      block.querySelectorAll('th').forEach(t => t.className = '');
+      if (sortCol === col) sortDir *= -1; else { sortCol = col; sortDir = 1; }
+      th.className = sortDir === 1 ? 'asc' : 'desc';
+      const sorted = [...rows].sort((a, b) => {
+        const av = a[col], bv = b[col];
+        return typeof av === 'string' ? av.localeCompare(bv) * sortDir : (av - bv) * sortDir;
+      });
+      render(sorted);
+    });
+  });
+});
+</script>
+</body>
+</html>
