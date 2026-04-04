@@ -1,0 +1,65 @@
+{
+  "date": "2026-04-03",
+  "snapshots": {
+    "TSLA": [
+      {
+        "time": "17:06",
+        "spot": 360.59,
+        "gex_display": -7.9,
+        "gex_unit": "M",
+        "gex_at": 360.0,
+        "mp": 365.0,
+        "cw": 380.0,
+        "pw": 360.0
+      }
+    ],
+    "NVDA": [
+      {
+        "time": "17:06",
+        "spot": 177.39,
+        "gex_display": 22.1,
+        "gex_unit": "M",
+        "gex_at": 180.0,
+        "mp": 172.5,
+        "cw": 180.0,
+        "pw": 170.0
+      }
+    ],
+    "AAPL": [
+      {
+        "time": "17:06",
+        "spot": 255.92,
+        "gex_display": 22.3,
+        "gex_unit": "M",
+        "gex_at": 260.0,
+        "mp": 252.5,
+        "cw": 260.0,
+        "pw": 240.0
+      }
+    ],
+    "MSFT": [
+      {
+        "time": "17:06",
+        "spot": 373.89,
+        "gex_display": 15.9,
+        "gex_unit": "M",
+        "gex_at": 375.0,
+        "mp": 367.5,
+        "cw": 375.0,
+        "pw": 365.0
+      }
+    ],
+    "AMZN": [
+      {
+        "time": "17:06",
+        "spot": 209.77,
+        "gex_display": 8.4,
+        "gex_unit": "M",
+        "gex_at": 215.0,
+        "mp": 210.0,
+        "cw": 215.0,
+        "pw": 202.5
+      }
+    ]
+  }
+}
