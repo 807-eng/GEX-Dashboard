@@ -1,4 +1,17 @@
 {
   "date": "2026-04-06",
-  "snapshots": {}
+  "snapshots": {
+    "QQQ": [
+      {
+        "time": "06:42",
+        "spot": 587.17,
+        "gex_display": 244.6,
+        "gex_unit": "M",
+        "gex_at": 590.0,
+        "mp": 585.0,
+        "cw": 590.0,
+        "pw": 580.0
+      }
+    ]
+  }
 }
