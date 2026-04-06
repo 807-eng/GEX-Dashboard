@@ -1,4 +1,17 @@
 {
   "date": "2026-04-06",
-  "snapshots": {}
+  "snapshots": {
+    "TSLA": [
+      {
+        "time": "06:42",
+        "spot": 364.89,
+        "gex_display": 13.9,
+        "gex_unit": "M",
+        "gex_at": 370.0,
+        "mp": 370.0,
+        "cw": 370.0,
+        "pw": 355.0
+      }
+    ]
+  }
 }
