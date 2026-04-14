@@ -27,6 +27,19 @@
         "mp": 347.5,
         "cw": 347.5,
         "pw": 340.0
+      },
+      {
+        "time": "06:23",
+        "spot": 358.71,
+        "gex_display": 13.8,
+        "gex_unit": "M",
+        "gex_at": 347.5,
+        "gex2_display": -8.4,
+        "gex2_unit": "M",
+        "gex2_at": 340.0,
+        "mp": 347.5,
+        "cw": 347.5,
+        "pw": 340.0
       }
     ],
     "NVDA": [
@@ -46,6 +59,19 @@
       {
         "time": "06:13",
         "spot": 190.43,
+        "gex_display": 21.0,
+        "gex_unit": "M",
+        "gex_at": 190.0,
+        "gex2_display": 17.8,
+        "gex2_unit": "M",
+        "gex2_at": 192.5,
+        "mp": 187.5,
+        "cw": 190.0,
+        "pw": 180.0
+      },
+      {
+        "time": "06:23",
+        "spot": 190.47,
         "gex_display": 21.0,
         "gex_unit": "M",
         "gex_at": 190.0,
@@ -83,6 +109,19 @@
         "mp": 260.0,
         "cw": 260.0,
         "pw": 250.0
+      },
+      {
+        "time": "06:23",
+        "spot": 259.63,
+        "gex_display": 4.3,
+        "gex_unit": "M",
+        "gex_at": 260.0,
+        "gex2_display": 4.2,
+        "gex2_unit": "M",
+        "gex2_at": 265.0,
+        "mp": 260.0,
+        "cw": 260.0,
+        "pw": 250.0
       }
     ],
     "MSFT": [
@@ -111,6 +150,19 @@
         "mp": 377.5,
         "cw": 385.0,
         "pw": 375.0
+      },
+      {
+        "time": "06:23",
+        "spot": 391.12,
+        "gex_display": 9.0,
+        "gex_unit": "M",
+        "gex_at": 385.0,
+        "gex2_display": 8.0,
+        "gex2_unit": "M",
+        "gex2_at": 387.5,
+        "mp": 377.5,
+        "cw": 385.0,
+        "pw": 375.0
       }
     ],
     "AMZN": [
@@ -130,6 +182,19 @@
       {
         "time": "06:13",
         "spot": 242.75,
+        "gex_display": 13.2,
+        "gex_unit": "M",
+        "gex_at": 245.0,
+        "gex2_display": 5.5,
+        "gex2_unit": "M",
+        "gex2_at": 240.0,
+        "mp": 235.0,
+        "cw": 245.0,
+        "pw": 230.0
+      },
+      {
+        "time": "06:23",
+        "spot": 244.14,
         "gex_display": 13.2,
         "gex_unit": "M",
         "gex_at": 245.0,
