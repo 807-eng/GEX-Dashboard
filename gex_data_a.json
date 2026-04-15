@@ -40,6 +40,19 @@
         "mp": 352.5,
         "cw": 365.0,
         "pw": 345.0
+      },
+      {
+        "time": "06:32",
+        "spot": 366.72,
+        "gex_display": 37.0,
+        "gex_unit": "M",
+        "gex_at": 367.5,
+        "gex2_display": 16.4,
+        "gex2_unit": "M",
+        "gex2_at": 372.5,
+        "mp": 367.5,
+        "cw": 367.5,
+        "pw": 352.5
       }
     ],
     "NVDA": [
@@ -72,6 +85,19 @@
       {
         "time": "06:23",
         "spot": 195.77,
+        "gex_display": 31.1,
+        "gex_unit": "M",
+        "gex_at": 195.0,
+        "gex2_display": 30.2,
+        "gex2_unit": "M",
+        "gex2_at": 192.5,
+        "mp": 190.0,
+        "cw": 195.0,
+        "pw": 185.0
+      },
+      {
+        "time": "06:32",
+        "spot": 196.33,
         "gex_display": 31.1,
         "gex_unit": "M",
         "gex_at": 195.0,
@@ -163,6 +189,19 @@
         "mp": 380.0,
         "cw": 390.0,
         "pw": 377.5
+      },
+      {
+        "time": "06:32",
+        "spot": 397.72,
+        "gex_display": 29.4,
+        "gex_unit": "M",
+        "gex_at": 397.5,
+        "gex2_display": 9.6,
+        "gex2_unit": "M",
+        "gex2_at": 392.5,
+        "mp": 392.5,
+        "cw": 397.5,
+        "pw": 387.5
       }
     ],
     "AMZN": [
@@ -195,6 +234,19 @@
       {
         "time": "06:23",
         "spot": 249.21,
+        "gex_display": 27.9,
+        "gex_unit": "M",
+        "gex_at": 250.0,
+        "gex2_display": 27.0,
+        "gex2_unit": "M",
+        "gex2_at": 245.0,
+        "mp": 240.0,
+        "cw": 250.0,
+        "pw": 237.5
+      },
+      {
+        "time": "06:32",
+        "spot": 247.8,
         "gex_display": 27.9,
         "gex_unit": "M",
         "gex_at": 250.0,
