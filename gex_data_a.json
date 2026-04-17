@@ -29,6 +29,19 @@
         "mp": 185.0,
         "cw": 200.0,
         "pw": 170.0
+      },
+      {
+        "time": "06:13",
+        "spot": 201.26,
+        "gex_display": 290.0,
+        "gex_unit": "M",
+        "gex_at": 200.0,
+        "gex2_display": 135.3,
+        "gex2_unit": "M",
+        "gex2_at": 195.0,
+        "mp": 185.0,
+        "cw": 200.0,
+        "pw": 170.0
       }
     ],
     "AAPL": [
@@ -59,12 +72,38 @@
         "mp": 392.5,
         "cw": 420.0,
         "pw": 390.0
+      },
+      {
+        "time": "06:13",
+        "spot": 426.15,
+        "gex_display": 174.2,
+        "gex_unit": "M",
+        "gex_at": 420.0,
+        "gex2_display": 100.2,
+        "gex2_unit": "M",
+        "gex2_at": 425.0,
+        "mp": 392.5,
+        "cw": 420.0,
+        "pw": 390.0
       }
     ],
     "AMZN": [
       {
         "time": "06:04",
         "spot": 252.62,
+        "gex_display": 109.7,
+        "gex_unit": "M",
+        "gex_at": 250.0,
+        "gex2_display": 45.0,
+        "gex2_unit": "M",
+        "gex2_at": 255.0,
+        "mp": 245.0,
+        "cw": 250.0,
+        "pw": 242.5
+      },
+      {
+        "time": "06:13",
+        "spot": 252.98,
         "gex_display": 109.7,
         "gex_unit": "M",
         "gex_at": 250.0,
