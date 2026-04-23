@@ -29,14 +29,14 @@
 </head>
 <body>
 <div class="header">
-  <span class="header-title">📊 GEX Dashboard &nbsp;2026-04-23 &nbsp;|&nbsp; Last updated: 2026-04-23 06:16 PST</span>
+  <span class="header-title">📊 GEX Dashboard &nbsp;2026-04-23 &nbsp;|&nbsp; Last updated: 2026-04-23 06:25 PST</span>
   <a href="index.html" class="page-link">← Page 1</a>
 </div>
 <div class="tabs" id="tab-container"></div>
 <div id="panel-container"></div>
 <div class="footer">Auto-updated every 10 min during market hours</div>
 <script>
-const data = {"GOOGL": [{"time": "06:16", "spot": 338.34, "gex_display": 32.2, "gex_unit": "M", "gex_at": 342.5, "gex2_display": 22.7, "gex2_unit": "M", "gex2_at": 350.0, "mp": 337.5, "cw": 342.5, "pw": 337.5}], "META": [{"time": "06:16", "spot": 663.8, "gex_display": 57.8, "gex_unit": "M", "gex_at": 675.0, "gex2_display": 33.9, "gex2_unit": "M", "gex2_at": 680.0, "mp": 662.5, "cw": 675.0, "pw": 655.0}], "SPY": [{"time": "06:16", "spot": 709.49, "gex_display": 90.9, "gex_unit": "M", "gex_at": 715.0, "gex2_display": 89.4, "gex2_unit": "M", "gex2_at": 711.0, "mp": 709.0, "cw": 715.0, "pw": 700.0}], "QQQ": [{"time": "06:16", "spot": 653.57, "gex_display": 66.7, "gex_unit": "M", "gex_at": 660.0, "gex2_display": 61.4, "gex2_unit": "M", "gex2_at": 655.0, "mp": 652.0, "cw": 660.0, "pw": 643.0}], "IWM": [{"time": "06:16", "spot": 276.26, "gex_display": -24.0, "gex_unit": "M", "gex_at": 275.0, "gex2_display": 7.1, "gex2_unit": "M", "gex2_at": 279.0, "mp": 276.0, "cw": 279.0, "pw": 275.0}]};
+const data = {"GOOGL": [{"time": "06:16", "spot": 338.34, "gex_display": 32.2, "gex_unit": "M", "gex_at": 342.5, "gex2_display": 22.7, "gex2_unit": "M", "gex2_at": 350.0, "mp": 337.5, "cw": 342.5, "pw": 337.5}, {"time": "06:25", "spot": 339.1, "gex_display": 32.2, "gex_unit": "M", "gex_at": 342.5, "gex2_display": 22.7, "gex2_unit": "M", "gex2_at": 350.0, "mp": 340.0, "cw": 342.5, "pw": 337.5}], "META": [{"time": "06:16", "spot": 663.8, "gex_display": 57.8, "gex_unit": "M", "gex_at": 675.0, "gex2_display": 33.9, "gex2_unit": "M", "gex2_at": 680.0, "mp": 662.5, "cw": 675.0, "pw": 655.0}, {"time": "06:25", "spot": 662.97, "gex_display": 57.8, "gex_unit": "M", "gex_at": 675.0, "gex2_display": 33.9, "gex2_unit": "M", "gex2_at": 680.0, "mp": 662.5, "cw": 675.0, "pw": 655.0}], "SPY": [{"time": "06:16", "spot": 709.49, "gex_display": 90.9, "gex_unit": "M", "gex_at": 715.0, "gex2_display": 89.4, "gex2_unit": "M", "gex2_at": 711.0, "mp": 709.0, "cw": 715.0, "pw": 700.0}], "QQQ": [{"time": "06:16", "spot": 653.57, "gex_display": 66.7, "gex_unit": "M", "gex_at": 660.0, "gex2_display": 61.4, "gex2_unit": "M", "gex2_at": 655.0, "mp": 652.0, "cw": 660.0, "pw": 643.0}, {"time": "06:25", "spot": 653.72, "gex_display": 66.7, "gex_unit": "M", "gex_at": 660.0, "gex2_display": 61.4, "gex2_unit": "M", "gex2_at": 655.0, "mp": 652.0, "cw": 660.0, "pw": 643.0}], "IWM": [{"time": "06:16", "spot": 276.26, "gex_display": -24.0, "gex_unit": "M", "gex_at": 275.0, "gex2_display": 7.1, "gex2_unit": "M", "gex2_at": 279.0, "mp": 276.0, "cw": 279.0, "pw": 275.0}, {"time": "06:25", "spot": 276.68, "gex_display": -24.0, "gex_unit": "M", "gex_at": 275.0, "gex2_display": 7.1, "gex2_unit": "M", "gex2_at": 279.0, "mp": 276.0, "cw": 279.0, "pw": 275.0}]};
 const tickers = ["GOOGL", "META", "SPY", "QQQ", "IWM"];
 
 const tabContainer = document.getElementById("tab-container");
