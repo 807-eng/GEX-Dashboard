@@ -553,6 +553,19 @@
         "mp": 662.0,
         "cw": 666.0,
         "pw": 662.0
+      },
+      {
+        "time": "08:02",
+        "spot": 662.38,
+        "gex_display": -105.3,
+        "gex_unit": "M",
+        "gex_at": 662.0,
+        "gex2_display": -102.0,
+        "gex2_unit": "M",
+        "gex2_at": 660.0,
+        "mp": 662.0,
+        "cw": 666.0,
+        "pw": 662.0
       }
     ],
     "IWM": [
@@ -706,6 +719,19 @@
         "gex_unit": "M",
         "gex_at": 274.0,
         "gex2_display": 30.2,
+        "gex2_unit": "M",
+        "gex2_at": 279.0,
+        "mp": 277.0,
+        "cw": 279.0,
+        "pw": 274.0
+      },
+      {
+        "time": "08:02",
+        "spot": 276.91,
+        "gex_display": -49.0,
+        "gex_unit": "M",
+        "gex_at": 274.0,
+        "gex2_display": 30.1,
         "gex2_unit": "M",
         "gex2_at": 279.0,
         "mp": 277.0,
