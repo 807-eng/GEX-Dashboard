@@ -40,6 +40,19 @@
         "mp": 377.5,
         "cw": 390.0,
         "pw": 365.0
+      },
+      {
+        "time": "06:32",
+        "spot": 374.2,
+        "gex_display": 17.2,
+        "gex_unit": "M",
+        "gex_at": 390.0,
+        "gex2_display": -15.7,
+        "gex2_unit": "M",
+        "gex2_at": 370.0,
+        "mp": 375.0,
+        "cw": 390.0,
+        "pw": 370.0
       }
     ],
     "NVDA": [
@@ -81,6 +94,19 @@
         "mp": 202.5,
         "cw": 215.0,
         "pw": 197.5
+      },
+      {
+        "time": "06:32",
+        "spot": 208.99,
+        "gex_display": 24.7,
+        "gex_unit": "M",
+        "gex_at": 220.0,
+        "gex2_display": 20.0,
+        "gex2_unit": "M",
+        "gex2_at": 215.0,
+        "mp": 212.5,
+        "cw": 220.0,
+        "pw": 210.0
       }
     ],
     "AAPL": [
@@ -113,6 +139,19 @@
       {
         "time": "06:23",
         "spot": 271.0,
+        "gex_display": 25.9,
+        "gex_unit": "M",
+        "gex_at": 280.0,
+        "gex2_display": -21.0,
+        "gex2_unit": "M",
+        "gex2_at": 265.0,
+        "mp": 270.0,
+        "cw": 280.0,
+        "pw": 265.0
+      },
+      {
+        "time": "06:32",
+        "spot": 270.44,
         "gex_display": 25.9,
         "gex_unit": "M",
         "gex_at": 280.0,
@@ -161,6 +200,19 @@
         "gex2_unit": "M",
         "gex2_at": 445.0,
         "mp": 417.5,
+        "cw": 460.0,
+        "pw": 390.0
+      },
+      {
+        "time": "06:32",
+        "spot": 423.0,
+        "gex_display": 59.9,
+        "gex_unit": "M",
+        "gex_at": 460.0,
+        "gex2_display": 39.8,
+        "gex2_unit": "M",
+        "gex2_at": 445.0,
+        "mp": 415.0,
         "cw": 460.0,
         "pw": 390.0
       }
