@@ -14,6 +14,19 @@
         "mp": 345.0,
         "cw": 355.0,
         "pw": 340.0
+      },
+      {
+        "time": "06:17",
+        "spot": 347.29,
+        "gex_display": 15.6,
+        "gex_unit": "M",
+        "gex_at": 355.0,
+        "gex2_display": 14.5,
+        "gex2_unit": "M",
+        "gex2_at": 345.0,
+        "mp": 335.0,
+        "cw": 355.0,
+        "pw": 327.5
       }
     ],
     "META": [
@@ -29,12 +42,38 @@
         "mp": 675.0,
         "cw": 680.0,
         "pw": 670.0
+      },
+      {
+        "time": "06:17",
+        "spot": 673.41,
+        "gex_display": 33.5,
+        "gex_unit": "M",
+        "gex_at": 710.0,
+        "gex2_display": 27.5,
+        "gex2_unit": "M",
+        "gex2_at": 700.0,
+        "mp": 672.5,
+        "cw": 710.0,
+        "pw": 667.5
       }
     ],
     "SPY": [
       {
         "time": "06:05",
         "spot": 710.99,
+        "gex_display": 138.2,
+        "gex_unit": "M",
+        "gex_at": 720.0,
+        "gex2_display": 115.4,
+        "gex2_unit": "M",
+        "gex2_at": 715.0,
+        "mp": 712.0,
+        "cw": 720.0,
+        "pw": 708.0
+      },
+      {
+        "time": "06:17",
+        "spot": 711.54,
         "gex_display": 138.2,
         "gex_unit": "M",
         "gex_at": 720.0,
@@ -59,11 +98,37 @@
         "mp": 659.0,
         "cw": 668.0,
         "pw": 658.0
+      },
+      {
+        "time": "06:17",
+        "spot": 656.59,
+        "gex_display": 61.2,
+        "gex_unit": "M",
+        "gex_at": 668.0,
+        "gex2_display": 56.8,
+        "gex2_unit": "M",
+        "gex2_at": 663.0,
+        "mp": 659.0,
+        "cw": 668.0,
+        "pw": 658.0
       }
     ],
     "IWM": [
       {
         "time": "06:05",
+        "spot": 275.61,
+        "gex_display": 9.8,
+        "gex_unit": "M",
+        "gex_at": 277.0,
+        "gex2_display": -9.6,
+        "gex2_unit": "M",
+        "gex2_at": 275.0,
+        "mp": 277.0,
+        "cw": 277.0,
+        "pw": 275.0
+      },
+      {
+        "time": "06:17",
         "spot": 275.61,
         "gex_display": 9.8,
         "gex_unit": "M",
