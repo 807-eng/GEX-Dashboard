@@ -27,6 +27,19 @@
         "mp": 387.5,
         "cw": 400.0,
         "pw": 380.0
+      },
+      {
+        "time": "06:24",
+        "spot": 401.52,
+        "gex_display": 74.0,
+        "gex_unit": "M",
+        "gex_at": 400.0,
+        "gex2_display": 44.8,
+        "gex2_unit": "M",
+        "gex2_at": 395.0,
+        "mp": 387.5,
+        "cw": 400.0,
+        "pw": 380.0
       }
     ],
     "META": [
@@ -45,6 +58,19 @@
       },
       {
         "time": "06:15",
+        "spot": 616.88,
+        "gex_display": 18.0,
+        "gex_unit": "M",
+        "gex_at": 625.0,
+        "gex2_display": 15.4,
+        "gex2_unit": "M",
+        "gex2_at": 640.0,
+        "mp": 607.5,
+        "cw": 625.0,
+        "pw": 600.0
+      },
+      {
+        "time": "06:24",
         "spot": 616.88,
         "gex_display": 18.0,
         "gex_unit": "M",
@@ -74,6 +100,19 @@
       {
         "time": "06:15",
         "spot": 734.93,
+        "gex_display": 159.8,
+        "gex_unit": "M",
+        "gex_at": 735.0,
+        "gex2_display": 124.7,
+        "gex2_unit": "M",
+        "gex2_at": 730.0,
+        "mp": 725.0,
+        "cw": 735.0,
+        "pw": 723.0
+      },
+      {
+        "time": "06:24",
+        "spot": 735.23,
         "gex_display": 159.8,
         "gex_unit": "M",
         "gex_at": 735.0,
@@ -129,6 +168,19 @@
       },
       {
         "time": "06:15",
+        "spot": 286.79,
+        "gex_display": 7.1,
+        "gex_unit": "M",
+        "gex_at": 285.0,
+        "gex2_display": 5.9,
+        "gex2_unit": "M",
+        "gex2_at": 290.0,
+        "mp": 281.0,
+        "cw": 285.0,
+        "pw": 280.0
+      },
+      {
+        "time": "06:24",
         "spot": 286.79,
         "gex_display": 7.1,
         "gex_unit": "M",
