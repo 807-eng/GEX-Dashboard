@@ -131,6 +131,19 @@
         "mp": 410.0,
         "cw": 430.0,
         "pw": 407.5
+      },
+      {
+        "time": "07:43",
+        "spot": 418.58,
+        "gex_display": 41.7,
+        "gex_unit": "M",
+        "gex_at": 430.0,
+        "gex2_display": 26.7,
+        "gex2_unit": "M",
+        "gex2_at": 427.5,
+        "mp": 410.0,
+        "cw": 430.0,
+        "pw": 407.5
       }
     ],
     "NVDA": [
@@ -336,6 +349,19 @@
       {
         "time": "07:33",
         "spot": 410.38,
+        "gex_display": -36.1,
+        "gex_unit": "M",
+        "gex_at": 410.0,
+        "gex2_display": 11.8,
+        "gex2_unit": "M",
+        "gex2_at": 415.0,
+        "mp": 415.0,
+        "cw": 415.0,
+        "pw": 410.0
+      },
+      {
+        "time": "07:43",
+        "spot": 410.69,
         "gex_display": -36.1,
         "gex_unit": "M",
         "gex_at": 410.0,
