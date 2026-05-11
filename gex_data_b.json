@@ -55,6 +55,19 @@
         "mp": 605.0,
         "cw": 615.0,
         "pw": 607.5
+      },
+      {
+        "time": "06:38",
+        "spot": 602.9,
+        "gex_display": 4.0,
+        "gex_unit": "M",
+        "gex_at": 615.0,
+        "gex2_display": -3.4,
+        "gex2_unit": "M",
+        "gex2_at": 607.5,
+        "mp": 605.0,
+        "cw": 615.0,
+        "pw": 607.5
       }
     ],
     "SPY": [
@@ -102,6 +115,19 @@
       {
         "time": "06:17",
         "spot": 709.98,
+        "gex_display": 52.9,
+        "gex_unit": "M",
+        "gex_at": 710.0,
+        "gex2_display": 29.2,
+        "gex2_unit": "M",
+        "gex2_at": 708.0,
+        "mp": 696.0,
+        "cw": 710.0,
+        "pw": 694.0
+      },
+      {
+        "time": "06:38",
+        "spot": 713.21,
         "gex_display": 52.9,
         "gex_unit": "M",
         "gex_at": 710.0,
