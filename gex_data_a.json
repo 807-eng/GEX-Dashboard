@@ -1,4 +1,50 @@
 {
   "date": "2026-05-13",
-  "snapshots": {}
+  "snapshots": {
+    "TSLA": [
+      {
+        "time": "06:33",
+        "spot": 435.69,
+        "gex_display": 11.1,
+        "gex_unit": "M",
+        "gex_at": 450.0,
+        "gex2_display": 10.0,
+        "gex2_unit": "M",
+        "gex2_at": 440.0,
+        "mp": 437.5,
+        "cw": 450.0,
+        "pw": 415.0
+      }
+    ],
+    "NVDA": [
+      {
+        "time": "06:33",
+        "spot": 225.33,
+        "gex_display": 69.0,
+        "gex_unit": "M",
+        "gex_at": 220.0,
+        "gex2_display": 28.6,
+        "gex2_unit": "M",
+        "gex2_at": 222.5,
+        "mp": 215.0,
+        "cw": 220.0,
+        "pw": 210.0
+      }
+    ],
+    "AMZN": [
+      {
+        "time": "06:33",
+        "spot": 264.44,
+        "gex_display": -19.9,
+        "gex_unit": "M",
+        "gex_at": 260.0,
+        "gex2_display": 19.3,
+        "gex2_unit": "M",
+        "gex2_at": 265.0,
+        "mp": 265.0,
+        "cw": 265.0,
+        "pw": 260.0
+      }
+    ]
+  }
 }
