@@ -14,11 +14,37 @@
         "mp": 390.0,
         "cw": 400.0,
         "pw": 380.0
+      },
+      {
+        "time": "06:16",
+        "spot": 400.29,
+        "gex_display": 76.2,
+        "gex_unit": "M",
+        "gex_at": 400.0,
+        "gex2_display": 62.0,
+        "gex2_unit": "M",
+        "gex2_at": 405.0,
+        "mp": 390.0,
+        "cw": 400.0,
+        "pw": 380.0
       }
     ],
     "META": [
       {
         "time": "06:06",
+        "spot": 616.58,
+        "gex_display": 36.1,
+        "gex_unit": "M",
+        "gex_at": 635.0,
+        "gex2_display": 28.7,
+        "gex2_unit": "M",
+        "gex2_at": 640.0,
+        "mp": 610.0,
+        "cw": 635.0,
+        "pw": 595.0
+      },
+      {
+        "time": "06:16",
         "spot": 616.58,
         "gex_display": 36.1,
         "gex_unit": "M",
@@ -44,6 +70,19 @@
         "mp": 737.0,
         "cw": 739.0,
         "pw": 720.0
+      },
+      {
+        "time": "06:16",
+        "spot": 744.25,
+        "gex_display": 353.5,
+        "gex_unit": "M",
+        "gex_at": 739.0,
+        "gex2_display": 323.6,
+        "gex2_unit": "M",
+        "gex2_at": 738.0,
+        "mp": 737.0,
+        "cw": 739.0,
+        "pw": 720.0
       }
     ],
     "QQQ": [
@@ -59,11 +98,37 @@
         "mp": 714.0,
         "cw": 712.0,
         "pw": 700.0
+      },
+      {
+        "time": "06:16",
+        "spot": 714.05,
+        "gex_display": 39.3,
+        "gex_unit": "M",
+        "gex_at": 712.0,
+        "gex2_display": 39.1,
+        "gex2_unit": "M",
+        "gex2_at": 720.0,
+        "mp": 714.0,
+        "cw": 712.0,
+        "pw": 700.0
       }
     ],
     "IWM": [
       {
         "time": "06:06",
+        "spot": 283.77,
+        "gex_display": 7.3,
+        "gex_unit": "M",
+        "gex_at": 284.0,
+        "gex2_display": 4.8,
+        "gex2_unit": "M",
+        "gex2_at": 285.0,
+        "mp": 284.0,
+        "cw": 284.0,
+        "pw": 279.0
+      },
+      {
+        "time": "06:16",
         "spot": 283.77,
         "gex_display": 7.3,
         "gex_unit": "M",
