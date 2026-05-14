@@ -1983,6 +1983,19 @@
         "mp": 410.0,
         "cw": 410.0,
         "pw": 400.0
+      },
+      {
+        "time": "12:51",
+        "spot": 409.38,
+        "gex_display": 42.9,
+        "gex_unit": "M",
+        "gex_at": 410.0,
+        "gex2_display": 36.4,
+        "gex2_unit": "M",
+        "gex2_at": 420.0,
+        "mp": 410.0,
+        "cw": 410.0,
+        "pw": 400.0
       }
     ],
     "AMZN": [
@@ -2474,6 +2487,19 @@
         "gex_unit": "M",
         "gex_at": 270.0,
         "gex2_display": 64.1,
+        "gex2_unit": "M",
+        "gex2_at": 275.0,
+        "mp": 267.5,
+        "cw": 270.0,
+        "pw": 267.5
+      },
+      {
+        "time": "12:51",
+        "spot": 267.67,
+        "gex_display": 76.9,
+        "gex_unit": "M",
+        "gex_at": 270.0,
+        "gex2_display": 60.1,
         "gex2_unit": "M",
         "gex2_at": 275.0,
         "mp": 267.5,
