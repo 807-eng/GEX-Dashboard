@@ -226,6 +226,19 @@
         "mp": 295.0,
         "cw": 300.0,
         "pw": 290.0
+      },
+      {
+        "time": "08:52",
+        "spot": 297.32,
+        "gex_display": 46.6,
+        "gex_unit": "M",
+        "gex_at": 300.0,
+        "gex2_display": 32.3,
+        "gex2_unit": "M",
+        "gex2_at": 297.5,
+        "mp": 295.0,
+        "cw": 300.0,
+        "pw": 292.5
       }
     ],
     "MSFT": [
@@ -326,6 +339,19 @@
         "time": "08:42",
         "spot": 256.11,
         "gex_display": -6.3,
+        "gex_unit": "M",
+        "gex_at": 260.0,
+        "gex2_display": -5.3,
+        "gex2_unit": "M",
+        "gex2_at": 255.0,
+        "mp": 267.5,
+        "cw": 270.0,
+        "pw": 260.0
+      },
+      {
+        "time": "08:52",
+        "spot": 255.63,
+        "gex_display": -5.7,
         "gex_unit": "M",
         "gex_at": 260.0,
         "gex2_display": -5.3,
