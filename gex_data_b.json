@@ -157,6 +157,19 @@
         "mp": 395.0,
         "cw": 400.0,
         "pw": 387.5
+      },
+      {
+        "time": "09:32",
+        "spot": 387.95,
+        "gex_display": -7.6,
+        "gex_unit": "M",
+        "gex_at": 387.5,
+        "gex2_display": -6.7,
+        "gex2_unit": "M",
+        "gex2_at": 385.0,
+        "mp": 395.0,
+        "cw": 400.0,
+        "pw": 387.5
       }
     ],
     "META": [
@@ -297,6 +310,19 @@
         "gex_unit": "M",
         "gex_at": 602.5,
         "gex2_display": 6.4,
+        "gex2_unit": "M",
+        "gex2_at": 620.0,
+        "mp": 607.5,
+        "cw": 620.0,
+        "pw": 602.5
+      },
+      {
+        "time": "09:32",
+        "spot": 602.06,
+        "gex_display": -7.8,
+        "gex_unit": "M",
+        "gex_at": 602.5,
+        "gex2_display": 6.0,
         "gex2_unit": "M",
         "gex2_at": 620.0,
         "mp": 607.5,
@@ -567,6 +593,19 @@
         "gex2_at": 272.0,
         "mp": 276.0,
         "cw": 280.0,
+        "pw": 273.0
+      },
+      {
+        "time": "09:32",
+        "spot": 273.26,
+        "gex_display": -157.9,
+        "gex_unit": "M",
+        "gex_at": 273.0,
+        "gex2_display": -56.6,
+        "gex2_unit": "M",
+        "gex2_at": 272.0,
+        "mp": 276.0,
+        "cw": 276.0,
         "pw": 273.0
       }
     ]
