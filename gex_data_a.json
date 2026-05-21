@@ -222,6 +222,19 @@
         "mp": 412.5,
         "cw": 430.0,
         "pw": 400.0
+      },
+      {
+        "time": "10:15",
+        "spot": 418.03,
+        "gex_display": 40.2,
+        "gex_unit": "M",
+        "gex_at": 435.0,
+        "gex2_display": 39.8,
+        "gex2_unit": "M",
+        "gex2_at": 430.0,
+        "mp": 412.5,
+        "cw": 435.0,
+        "pw": 400.0
       }
     ],
     "NVDA": [
@@ -440,6 +453,19 @@
         "gex_unit": "M",
         "gex_at": 225.0,
         "gex2_display": 74.1,
+        "gex2_unit": "M",
+        "gex2_at": 230.0,
+        "mp": 222.5,
+        "cw": 225.0,
+        "pw": 212.5
+      },
+      {
+        "time": "10:15",
+        "spot": 220.71,
+        "gex_display": 105.2,
+        "gex_unit": "M",
+        "gex_at": 225.0,
+        "gex2_display": 79.4,
         "gex2_unit": "M",
         "gex2_at": 230.0,
         "mp": 222.5,
@@ -668,6 +694,19 @@
         "mp": 290.0,
         "cw": 302.5,
         "pw": 282.5
+      },
+      {
+        "time": "10:15",
+        "spot": 220.65,
+        "gex_display": 95.0,
+        "gex_unit": "M",
+        "gex_at": 302.5,
+        "gex2_display": 71.6,
+        "gex2_unit": "M",
+        "gex2_at": 310.0,
+        "mp": 230.0,
+        "cw": 302.5,
+        "pw": 282.5
       }
     ],
     "MSFT": [
@@ -889,6 +928,19 @@
         "gex2_unit": "M",
         "gex2_at": 420.0,
         "mp": 320.0,
+        "cw": 430.0,
+        "pw": 410.0
+      },
+      {
+        "time": "10:15",
+        "spot": 417.13,
+        "gex_display": 36.2,
+        "gex_unit": "M",
+        "gex_at": 430.0,
+        "gex2_display": 27.6,
+        "gex2_unit": "M",
+        "gex2_at": 420.0,
+        "mp": 417.5,
         "cw": 430.0,
         "pw": 410.0
       }
@@ -1113,6 +1165,19 @@
         "gex2_at": 267.5,
         "mp": 262.5,
         "cw": 270.0,
+        "pw": 260.0
+      },
+      {
+        "time": "10:15",
+        "spot": 266.61,
+        "gex_display": 49.7,
+        "gex_unit": "M",
+        "gex_at": 267.5,
+        "gex2_display": 48.0,
+        "gex2_unit": "M",
+        "gex2_at": 270.0,
+        "mp": 262.5,
+        "cw": 267.5,
         "pw": 260.0
       }
     ]
