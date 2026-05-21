@@ -222,6 +222,19 @@
         "mp": 390.0,
         "cw": 390.0,
         "pw": 380.0
+      },
+      {
+        "time": "09:44",
+        "spot": 388.11,
+        "gex_display": 32.0,
+        "gex_unit": "M",
+        "gex_at": 390.0,
+        "gex2_display": 20.0,
+        "gex2_unit": "M",
+        "gex2_at": 395.0,
+        "mp": 390.0,
+        "cw": 390.0,
+        "pw": 380.0
       }
     ],
     "SPY": [
@@ -445,6 +458,19 @@
         "mp": 740.0,
         "cw": 742.0,
         "pw": 735.0
+      },
+      {
+        "time": "09:44",
+        "spot": 600.53,
+        "gex_display": 1.4,
+        "gex_unit": "B",
+        "gex_at": 745.0,
+        "gex2_display": 1.2,
+        "gex2_unit": "B",
+        "gex2_at": 740.0,
+        "mp": 740.0,
+        "cw": 745.0,
+        "pw": 730.0
       }
     ],
     "QQQ": [
@@ -663,6 +689,19 @@
         "gex_unit": "M",
         "gex_at": 705.0,
         "gex2_display": 89.3,
+        "gex2_unit": "M",
+        "gex2_at": 713.0,
+        "mp": 710.0,
+        "cw": 713.0,
+        "pw": 705.0
+      },
+      {
+        "time": "09:44",
+        "spot": 710.09,
+        "gex_display": -142.6,
+        "gex_unit": "M",
+        "gex_at": 705.0,
+        "gex2_display": 95.0,
         "gex2_unit": "M",
         "gex2_at": 713.0,
         "mp": 710.0,
@@ -891,6 +930,19 @@
         "mp": 280.0,
         "cw": 280.0,
         "pw": 279.0
+      },
+      {
+        "time": "09:44",
+        "spot": 280.03,
+        "gex_display": 47.1,
+        "gex_unit": "M",
+        "gex_at": 280.0,
+        "gex2_display": 28.8,
+        "gex2_unit": "M",
+        "gex2_at": 283.0,
+        "mp": 280.0,
+        "cw": 280.0,
+        "pw": 279.0
       }
     ],
     "META": [
@@ -1101,6 +1153,19 @@
         "mp": 602.5,
         "cw": 615.0,
         "pw": 600.0
+      },
+      {
+        "time": "09:44",
+        "spot": 388.0,
+        "gex_display": -1.5,
+        "gex_unit": "M",
+        "gex_at": 400.0,
+        "gex2_display": -1.2,
+        "gex2_unit": "M",
+        "gex2_at": 440.0,
+        "mp": 450.0,
+        "cw": 0,
+        "pw": 0
       }
     ]
   }
