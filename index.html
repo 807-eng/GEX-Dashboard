@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GEX Dashboard 2026-05-26</title>
+<title>GEX Dashboard 2026-05-27</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f9f9f7; color: #1a1a1a; padding: 0; }
@@ -29,14 +29,14 @@
 </head>
 <body>
 <div class="header">
-  <span class="header-title">📊 GEX Dashboard &nbsp;2026-05-26 &nbsp;|&nbsp; Last updated: 2026-05-26 20:41 PST</span>
+  <span class="header-title">📊 GEX Dashboard &nbsp;2026-05-27 &nbsp;|&nbsp; Last updated: 2026-05-27 09:13 PST</span>
   <a href="page2.html" class="page-link">Page 2 →</a>
 </div>
 <div class="tabs" id="tab-container"></div>
 <div id="panel-container"></div>
 <div class="footer">Auto-updated every 10 min during market hours</div>
 <script>
-const data = {"TSLA": [{"time": "11:04", "spot": 748.83, "gex_display": -270.6, "gex_unit": "M", "gex_at": 745.0, "gex2_display": 173.8, "gex2_unit": "M", "gex2_at": 752.0, "mp": 747.0, "cw": 752.0, "pw": 745.0}, {"time": "12:06", "spot": 431.64, "gex_display": 9.6, "gex_unit": "M", "gex_at": 435.0, "gex2_display": 9.1, "gex2_unit": "M", "gex2_at": 427.5, "mp": 427.5, "cw": 435.0, "pw": 415.0}, {"time": "20:41", "spot": 749.88, "gex_display": -241.3, "gex_unit": "M", "gex_at": 745.0, "gex2_display": 192.9, "gex2_unit": "M", "gex2_at": 752.0, "mp": 747.0, "cw": 752.0, "pw": 745.0}], "NVDA": [{"time": "11:04", "spot": 213.56, "gex_display": 4.1, "gex_unit": "M", "gex_at": 225.0, "gex2_display": 3.0, "gex2_unit": "M", "gex2_at": 230.0, "mp": 225.0, "cw": 0, "pw": 0}, {"time": "12:06", "spot": 214.29, "gex_display": 10.7, "gex_unit": "M", "gex_at": 220.0, "gex2_display": -5.9, "gex2_unit": "M", "gex2_at": 215.0, "mp": 217.5, "cw": 220.0, "pw": 215.0}, {"time": "20:41", "spot": 749.01, "gex_display": -266.3, "gex_unit": "M", "gex_at": 745.0, "gex2_display": 174.6, "gex2_unit": "M", "gex2_at": 752.0, "mp": 747.0, "cw": 752.0, "pw": 745.0}], "AAPL": [{"time": "11:04", "spot": 309.23, "gex_display": 16.9, "gex_unit": "M", "gex_at": 312.5, "gex2_display": -8.1, "gex2_unit": "M", "gex2_at": 300.0, "mp": 305.0, "cw": 312.5, "pw": 300.0}, {"time": "12:06", "spot": 309.99, "gex_display": 20.8, "gex_unit": "M", "gex_at": 312.5, "gex2_display": 7.4, "gex2_unit": "M", "gex2_at": 315.0, "mp": 305.0, "cw": 312.5, "pw": 300.0}, {"time": "20:41", "spot": 749.28, "gex_display": -261.3, "gex_unit": "M", "gex_at": 745.0, "gex2_display": 181.5, "gex2_unit": "M", "gex2_at": 752.0, "mp": 747.0, "cw": 752.0, "pw": 745.0}], "MSFT": [{"time": "11:04", "spot": 413.24, "gex_display": 7.2, "gex_unit": "M", "gex_at": 422.5, "gex2_display": 6.6, "gex2_unit": "M", "gex2_at": 420.0, "mp": 415.0, "cw": 422.5, "pw": 410.0}, {"time": "12:06", "spot": 749.67, "gex_display": -254.6, "gex_unit": "M", "gex_at": 745.0, "gex2_display": 200.8, "gex2_unit": "M", "gex2_at": 752.0, "mp": 747.0, "cw": 752.0, "pw": 745.0}, {"time": "20:41", "spot": 748.83, "gex_display": -270.6, "gex_unit": "M", "gex_at": 745.0, "gex2_display": 173.8, "gex2_unit": "M", "gex2_at": 752.0, "mp": 747.0, "cw": 752.0, "pw": 745.0}], "AMZN": [{"time": "11:04", "spot": 262.29, "gex_display": 21.6, "gex_unit": "M", "gex_at": 267.5, "gex2_display": 5.3, "gex2_unit": "M", "gex2_at": 265.0, "mp": 265.0, "cw": 267.5, "pw": 262.5}, {"time": "12:06", "spot": 749.17, "gex_display": -270.9, "gex_unit": "M", "gex_at": 745.0, "gex2_display": 192.9, "gex2_unit": "M", "gex2_at": 752.0, "mp": 747.0, "cw": 752.0, "pw": 745.0}, {"time": "20:41", "spot": 749.05, "gex_display": 3.0, "gex_unit": "B", "gex_at": 750.0, "gex2_display": 1.4, "gex2_unit": "B", "gex2_at": 755.0, "mp": 745.0, "cw": 750.0, "pw": 730.0}]};
+const data = {"TSLA": [{"time": "09:13", "spot": 440.53, "gex_display": 66.3, "gex_unit": "M", "gex_at": 440.0, "gex2_display": 43.7, "gex2_unit": "M", "gex2_at": 445.0, "mp": 432.5, "cw": 440.0, "pw": 430.0}], "NVDA": [{"time": "09:13", "spot": 211.02, "gex_display": 33.7, "gex_unit": "M", "gex_at": 215.0, "gex2_display": -19.8, "gex2_unit": "M", "gex2_at": 212.5, "mp": 215.0, "cw": 215.0, "pw": 212.5}], "AAPL": [{"time": "09:13", "spot": 311.55, "gex_display": 166.7, "gex_unit": "M", "gex_at": 312.5, "gex2_display": 45.7, "gex2_unit": "M", "gex2_at": 310.0, "mp": 310.0, "cw": 312.5, "pw": 300.0}], "MSFT": [{"time": "09:13", "spot": 413.08, "gex_display": -25.2, "gex_unit": "M", "gex_at": 412.5, "gex2_display": 16.4, "gex2_unit": "M", "gex2_at": 417.5, "mp": 417.5, "cw": 417.5, "pw": 412.5}], "AMZN": [{"time": "09:13", "spot": 269.52, "gex_display": 87.4, "gex_unit": "M", "gex_at": 270.0, "gex2_display": 70.2, "gex2_unit": "M", "gex2_at": 267.5, "mp": 265.0, "cw": 270.0, "pw": 260.0}]};
 const tickers = ["TSLA", "NVDA", "AAPL", "MSFT", "AMZN"];
 
 const tabContainer = document.getElementById("tab-container");
