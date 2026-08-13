@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GEX Dashboard 2026-06-02</title>
+<title>GEX Dashboard 2026-08-13</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f9f9f7; color: #1a1a1a; padding: 0; }
@@ -29,15 +29,15 @@
 </head>
 <body>
 <div class="header">
-  <span class="header-title">📊 GEX Dashboard &nbsp;2026-06-02 &nbsp;|&nbsp; Last updated: 2026-06-02 12:23 PST</span>
+  <span class="header-title">📊 GEX Dashboard &nbsp;2026-08-13 &nbsp;|&nbsp; Last updated: 2026-08-13 08:23 PST</span>
   <a href="page2.html" class="page-link">Page 2 →</a>
 </div>
 <div class="tabs" id="tab-container"></div>
 <div id="panel-container"></div>
 <div class="footer">Auto-updated every 10 min during market hours</div>
 <script>
-const data = {"TSLA": [{"time": "12:03", "spot": 421.99, "gex_display": 24.6, "gex_unit": "M", "gex_at": 430.0, "gex2_display": 13.5, "gex2_unit": "M", "gex2_at": 425.0, "mp": 420.0, "cw": 430.0, "pw": 415.0}, {"time": "12:13", "spot": 421.58, "gex_display": 23.3, "gex_unit": "M", "gex_at": 430.0, "gex2_display": 13.2, "gex2_unit": "M", "gex2_at": 425.0, "mp": 420.0, "cw": 430.0, "pw": 400.0}, {"time": "12:23", "spot": 420.18, "gex_display": 21.9, "gex_unit": "M", "gex_at": 430.0, "gex2_display": 12.9, "gex2_unit": "M", "gex2_at": 420.0, "mp": 420.0, "cw": 430.0, "pw": 415.0}], "NVDA": [{"time": "12:03", "spot": 222.67, "gex_display": 71.9, "gex_unit": "M", "gex_at": 225.0, "gex2_display": 31.0, "gex2_unit": "M", "gex2_at": 230.0, "mp": 217.5, "cw": 225.0, "pw": 210.0}, {"time": "12:13", "spot": 223.13, "gex_display": 76.3, "gex_unit": "M", "gex_at": 225.0, "gex2_display": 34.4, "gex2_unit": "M", "gex2_at": 230.0, "mp": 217.5, "cw": 225.0, "pw": 210.0}, {"time": "12:23", "spot": 223.05, "gex_display": 76.0, "gex_unit": "M", "gex_at": 225.0, "gex2_display": 33.4, "gex2_unit": "M", "gex2_at": 230.0, "mp": 217.5, "cw": 225.0, "pw": 210.0}], "AAPL": [{"time": "12:03", "spot": 314.88, "gex_display": 85.0, "gex_unit": "M", "gex_at": 315.0, "gex2_display": 37.4, "gex2_unit": "M", "gex2_at": 317.5, "mp": 307.5, "cw": 315.0, "pw": 300.0}, {"time": "12:13", "spot": 315.04, "gex_display": 84.7, "gex_unit": "M", "gex_at": 315.0, "gex2_display": 39.7, "gex2_unit": "M", "gex2_at": 317.5, "mp": 307.5, "cw": 315.0, "pw": 305.0}, {"time": "12:23", "spot": 314.94, "gex_display": 85.5, "gex_unit": "M", "gex_at": 315.0, "gex2_display": 38.8, "gex2_unit": "M", "gex2_at": 317.5, "mp": 307.5, "cw": 315.0, "pw": 300.0}], "MSFT": [{"time": "12:03", "spot": 440.95, "gex_display": 9.6, "gex_unit": "M", "gex_at": 450.0, "gex2_display": -4.8, "gex2_unit": "M", "gex2_at": 440.0, "mp": 437.5, "cw": 450.0, "pw": 440.0}, {"time": "12:13", "spot": 441.84, "gex_display": 10.4, "gex_unit": "M", "gex_at": 450.0, "gex2_display": -4.9, "gex2_unit": "M", "gex2_at": 440.0, "mp": 445.0, "cw": 450.0, "pw": 440.0}, {"time": "12:23", "spot": 441.98, "gex_display": 11.2, "gex_unit": "M", "gex_at": 450.0, "gex2_display": -5.1, "gex2_unit": "M", "gex2_at": 440.0, "mp": 445.0, "cw": 450.0, "pw": 440.0}], "AMZN": [{"time": "12:03", "spot": 258.32, "gex_display": -13.0, "gex_unit": "M", "gex_at": 257.5, "gex2_display": -9.9, "gex2_unit": "M", "gex2_at": 260.0, "mp": 265.0, "cw": 270.0, "pw": 257.5}, {"time": "12:13", "spot": 258.16, "gex_display": -13.5, "gex_unit": "M", "gex_at": 257.5, "gex2_display": -9.7, "gex2_unit": "M", "gex2_at": 260.0, "mp": 265.0, "cw": 270.0, "pw": 257.5}, {"time": "12:23", "spot": 257.82, "gex_display": -13.5, "gex_unit": "M", "gex_at": 257.5, "gex2_display": -9.0, "gex2_unit": "M", "gex2_at": 260.0, "mp": 265.0, "cw": 270.0, "pw": 257.5}]};
-const tickers = ["TSLA", "NVDA", "AAPL", "MSFT", "AMZN"];
+const data = {"TSLA": [{"time": "08:23", "spot": 335.35, "gex_display": 95.7, "gex_unit": "M", "gex_at": 335.0, "gex2_display": 56.1, "gex2_unit": "M", "gex2_at": 340.0, "gex3_display": 42.8, "gex3_unit": "M", "gex3_at": 332.5, "net_gamma_display": 396.6, "net_gamma_unit": "M", "call_gamma_display": 505.2, "call_gamma_unit": "M", "put_gamma_display": -108.6, "put_gamma_unit": "M", "mp": 322.5, "cw": 335.0, "pw": 320.0}], "NVDA": [{"time": "08:23", "spot": 224.87, "gex_display": 189.1, "gex_unit": "M", "gex_at": 225.0, "gex2_display": 150.3, "gex2_unit": "M", "gex2_at": 227.5, "gex3_display": 95.6, "gex3_unit": "M", "gex3_at": 230.0, "net_gamma_display": 573.1, "net_gamma_unit": "M", "call_gamma_display": 796.0, "call_gamma_unit": "M", "put_gamma_display": -222.9, "put_gamma_unit": "M", "mp": 222.5, "cw": 225.0, "pw": 212.5}], "AAPL": [{"time": "08:23", "spot": 304.21, "gex_display": 50.4, "gex_unit": "M", "gex_at": 307.5, "gex2_display": 49.0, "gex2_unit": "M", "gex2_at": 302.5, "gex3_display": 46.5, "gex3_unit": "M", "gex3_at": 310.0, "net_gamma_display": 153.3, "net_gamma_unit": "M", "call_gamma_display": 537.0, "call_gamma_unit": "M", "put_gamma_display": -383.7, "put_gamma_unit": "M", "mp": 302.5, "cw": 307.5, "pw": 300.0}], "MSFT": [{"time": "08:23", "spot": 495.54, "gex_display": -64.8, "gex_unit": "M", "gex_at": 495.0, "gex2_display": 35.9, "gex2_unit": "M", "gex2_at": 505.0, "gex3_display": 28.9, "gex3_unit": "M", "gex3_at": 502.5, "net_gamma_display": 24.1, "net_gamma_unit": "M", "call_gamma_display": 261.1, "call_gamma_unit": "M", "put_gamma_display": -237.0, "put_gamma_unit": "M", "mp": 500.0, "cw": 505.0, "pw": 495.0}], "AMZN": [{"time": "08:23", "spot": 266.52, "gex_display": -19.0, "gex_unit": "M", "gex_at": 262.5, "gex2_display": 18.9, "gex2_unit": "M", "gex2_at": 270.0, "gex3_display": -14.3, "gex3_unit": "M", "gex3_at": 267.5, "net_gamma_display": -11.6, "net_gamma_unit": "M", "call_gamma_display": 131.4, "call_gamma_unit": "M", "put_gamma_display": -143.0, "put_gamma_unit": "M", "mp": 270.0, "cw": 270.0, "pw": 262.5}], "SPCX": [{"time": "08:23", "spot": 141.36, "gex_display": 12.2, "gex_unit": "M", "gex_at": 150.0, "gex2_display": 9.7, "gex2_unit": "M", "gex2_at": 140.0, "gex3_display": 6.7, "gex3_unit": "M", "gex3_at": 145.0, "net_gamma_display": 49.8, "net_gamma_unit": "M", "call_gamma_display": 122.1, "call_gamma_unit": "M", "put_gamma_display": -72.3, "put_gamma_unit": "M", "mp": 141.0, "cw": 150.0, "pw": 130.0}]};
+const tickers = ["TSLA", "NVDA", "AAPL", "MSFT", "AMZN", "SPCX"];
 
 const tabContainer = document.getElementById("tab-container");
 const panelContainer = document.getElementById("panel-container");
@@ -54,26 +54,35 @@ tickers.forEach((ticker, i) => {
   panel.className = "panel" + (i === 0 ? " active" : "");
   const rows = data[ticker] || [];
   const rowsHtml = rows.map(r => {
-    const isRed = r.gex_display < 0;
-    const abs = Math.abs(r.gex_display);
-    const unit = abs >= 1000 ? (abs/1000).toFixed(1)+"B" : abs+r.gex_unit;
-    const gexStr = (isRed ? "-" : "+") + "$" + unit + " @$" + r.gex_at;
-    const cls = isRed ? "red" : "grn";
-    const dot = isRed ? "🔴" : "🟢";
-    const isRed2 = r.gex2_display < 0;
-    const abs2 = Math.abs(r.gex2_display);
-    const unit2 = abs2 >= 1000 ? (abs2/1000).toFixed(1)+"B" : abs2+r.gex2_unit;
-    const gex2Str = (isRed2 ? "-" : "+") + "$" + unit2 + " @$" + r.gex2_at;
-    const cls2 = isRed2 ? "red" : "grn";
-    const dot2 = isRed2 ? "🔴" : "🟢";
+    const fmtGex = (display, unit, at) => {
+      if (display === null || display === undefined) return {html: "<span class=\"muted\">—</span>", cls: "muted"};
+      const isRed = display < 0;
+      const abs = Math.abs(display);
+      const u = abs >= 1000 ? (abs/1000).toFixed(1)+"B" : abs+unit;
+      const atStr = (at === null || at === undefined) ? "" : (" @$" + at);
+      const gexStr = (isRed ? "-" : "+") + "$" + u + atStr;
+      const cls = isRed ? "red" : "grn";
+      const dot = isRed ? "🔴" : "🟢";
+      return {html: dot + " " + gexStr, cls: cls};
+    };
+    const g1 = fmtGex(r.gex_display, r.gex_unit, r.gex_at);
+    const g2 = fmtGex(r.gex2_display, r.gex2_unit, r.gex2_at);
+    const g3 = fmtGex(r.gex3_display, r.gex3_unit, r.gex3_at);
+    const ng = fmtGex(r.net_gamma_display, r.net_gamma_unit, null);
+    const cg = fmtGex(r.call_gamma_display, r.call_gamma_unit, null);
+    const pg = fmtGex(r.put_gamma_display, r.put_gamma_unit, null);
     return "<tr><td>" + r.time + "</td><td>$" + r.spot.toFixed(2) + "</td>"
-      + "<td class=\"" + cls + "\">" + dot + " " + gexStr + "</td>"
-      + "<td class=\"" + cls2 + "\">" + dot2 + " " + gex2Str + "</td>"
+      + "<td class=\"" + g1.cls + "\">" + g1.html + "</td>"
+      + "<td class=\"" + g2.cls + "\">" + g2.html + "</td>"
+      + "<td class=\"" + g3.cls + "\">" + g3.html + "</td>"
+      + "<td class=\"" + ng.cls + "\">" + ng.html + "</td>"
+      + "<td class=\"" + cg.cls + "\">" + cg.html + "</td>"
+      + "<td class=\"" + pg.cls + "\">" + pg.html + "</td>"
       + "<td class=\"muted\">$" + r.mp + "</td>"
       + "<td class=\"muted\">$" + r.cw + "</td>"
       + "<td class=\"muted\">$" + r.pw + "</td></tr>";
   }).join("");
-  panel.innerHTML = "<table><thead><tr><th>Time</th><th>Price</th><th>GEX</th><th>GEX2</th><th>MP</th><th>CW</th><th>PW</th></tr></thead><tbody>" + rowsHtml + "</tbody></table>";
+  panel.innerHTML = "<table><thead><tr><th>Time</th><th>Price</th><th>GEX</th><th>GEX2</th><th>GEX3</th><th>Net Gamma</th><th>Call Gamma</th><th>Put Gamma</th><th>MP</th><th>CW</th><th>PW</th></tr></thead><tbody>" + rowsHtml + "</tbody></table>";
   panelContainer.appendChild(panel);
 });
 
