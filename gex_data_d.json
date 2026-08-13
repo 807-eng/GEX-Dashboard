@@ -1,0 +1,77 @@
+{
+  "date": "2026-08-13",
+  "snapshots": {
+    "SPY": [
+      {
+        "time": "11:23",
+        "spot": 777.02,
+        "gex_display": 2.0,
+        "gex_unit": "B",
+        "gex_at": 777.0,
+        "gex2_display": 681.2,
+        "gex2_unit": "M",
+        "gex2_at": 776.0,
+        "gex3_display": 629.6,
+        "gex3_unit": "M",
+        "gex3_at": 778.0,
+        "net_gamma_display": 4.4,
+        "net_gamma_unit": "B",
+        "call_gamma_display": 5.6,
+        "call_gamma_unit": "B",
+        "put_gamma_display": -1.1,
+        "put_gamma_unit": "B",
+        "mp": 774.0,
+        "cw": 777.0,
+        "pw": 772.0
+      }
+    ],
+    "QQQ": [
+      {
+        "time": "11:23",
+        "spot": 732.1,
+        "gex_display": 852.1,
+        "gex_unit": "M",
+        "gex_at": 730.0,
+        "gex2_display": 625.0,
+        "gex2_unit": "M",
+        "gex2_at": 733.0,
+        "gex3_display": 279.1,
+        "gex3_unit": "M",
+        "gex3_at": 732.0,
+        "net_gamma_display": 2.7,
+        "net_gamma_unit": "B",
+        "call_gamma_display": 2.9,
+        "call_gamma_unit": "B",
+        "put_gamma_display": -193.5,
+        "put_gamma_unit": "M",
+        "mp": 726.0,
+        "cw": 730.0,
+        "pw": 724.0
+      }
+    ],
+    "IWM": [
+      {
+        "time": "11:23",
+        "spot": 303.31,
+        "gex_display": 311.4,
+        "gex_unit": "M",
+        "gex_at": 303.0,
+        "gex2_display": 126.9,
+        "gex2_unit": "M",
+        "gex2_at": 304.0,
+        "gex3_display": -67.6,
+        "gex3_unit": "M",
+        "gex3_at": 300.0,
+        "net_gamma_display": 392.0,
+        "net_gamma_unit": "M",
+        "call_gamma_display": 628.4,
+        "call_gamma_unit": "M",
+        "put_gamma_display": -236.4,
+        "put_gamma_unit": "M",
+        "mp": 303.0,
+        "cw": 303.0,
+        "pw": 300.0
+      }
+    ]
+  }
+}
