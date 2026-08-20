@@ -67,6 +67,28 @@
         "mp": 262.5,
         "cw": 270.0,
         "pw": 262.5
+      },
+      {
+        "time": "06:34",
+        "spot": 262.55,
+        "gex_display": 98.3,
+        "gex_unit": "M",
+        "gex_at": 270.0,
+        "gex2_display": 74.9,
+        "gex2_unit": "M",
+        "gex2_at": 260.0,
+        "gex3_display": 30.1,
+        "gex3_unit": "M",
+        "gex3_at": 267.5,
+        "net_gamma_display": 226.3,
+        "net_gamma_unit": "M",
+        "call_gamma_display": 470.1,
+        "call_gamma_unit": "M",
+        "put_gamma_display": -243.8,
+        "put_gamma_unit": "M",
+        "mp": 262.5,
+        "cw": 270.0,
+        "pw": 250.0
       }
     ],
     "SPCX": [
@@ -135,6 +157,52 @@
         "mp": 138.0,
         "cw": 150.0,
         "pw": 135.0
+      },
+      {
+        "time": "06:34",
+        "spot": 136.28,
+        "gex_display": -12.6,
+        "gex_unit": "M",
+        "gex_at": 125.0,
+        "gex2_display": -7.0,
+        "gex2_unit": "M",
+        "gex2_at": 135.0,
+        "gex3_display": -6.3,
+        "gex3_unit": "M",
+        "gex3_at": 140.0,
+        "net_gamma_display": -23.3,
+        "net_gamma_unit": "M",
+        "call_gamma_display": 115.3,
+        "call_gamma_unit": "M",
+        "put_gamma_display": -138.6,
+        "put_gamma_unit": "M",
+        "mp": 138.0,
+        "cw": 150.0,
+        "pw": 125.0
+      }
+    ],
+    "MSFT": [
+      {
+        "time": "06:34",
+        "spot": 481.77,
+        "gex_display": 149.2,
+        "gex_unit": "M",
+        "gex_at": 480.0,
+        "gex2_display": 100.5,
+        "gex2_unit": "M",
+        "gex2_at": 500.0,
+        "gex3_display": 30.7,
+        "gex3_unit": "M",
+        "gex3_at": 490.0,
+        "net_gamma_display": 281.5,
+        "net_gamma_unit": "M",
+        "call_gamma_display": 563.6,
+        "call_gamma_unit": "M",
+        "put_gamma_display": -282.1,
+        "put_gamma_unit": "M",
+        "mp": 482.5,
+        "cw": 480.0,
+        "pw": 460.0
       }
     ]
   }
