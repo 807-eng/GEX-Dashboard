@@ -177,6 +177,28 @@
         "mp": 500.0,
         "cw": 510.0,
         "pw": 497.5
+      },
+      {
+        "time": "07:25",
+        "spot": 511.18,
+        "gex_display": 108.9,
+        "gex_unit": "M",
+        "gex_at": 510.0,
+        "gex2_display": 55.9,
+        "gex2_unit": "M",
+        "gex2_at": 512.5,
+        "gex3_display": 45.2,
+        "gex3_unit": "M",
+        "gex3_at": 507.5,
+        "net_gamma_display": 319.3,
+        "net_gamma_unit": "M",
+        "call_gamma_display": 367.7,
+        "call_gamma_unit": "M",
+        "put_gamma_display": -48.4,
+        "put_gamma_unit": "M",
+        "mp": 505.0,
+        "cw": 510.0,
+        "pw": 502.5
       }
     ],
     "AMZN": [
@@ -354,6 +376,28 @@
         "put_gamma_unit": "M",
         "mp": 257.5,
         "cw": 260.0,
+        "pw": 255.0
+      },
+      {
+        "time": "07:25",
+        "spot": 261.71,
+        "gex_display": 94.4,
+        "gex_unit": "M",
+        "gex_at": 262.5,
+        "gex2_display": 92.0,
+        "gex2_unit": "M",
+        "gex2_at": 260.0,
+        "gex3_display": 44.9,
+        "gex3_unit": "M",
+        "gex3_at": 265.0,
+        "net_gamma_display": 227.2,
+        "net_gamma_unit": "M",
+        "call_gamma_display": 330.0,
+        "call_gamma_unit": "M",
+        "put_gamma_display": -102.8,
+        "put_gamma_unit": "M",
+        "mp": 257.5,
+        "cw": 262.5,
         "pw": 255.0
       }
     ],
@@ -533,6 +577,28 @@
         "mp": 138.0,
         "cw": 140.0,
         "pw": 136.0
+      },
+      {
+        "time": "07:25",
+        "spot": 142.48,
+        "gex_display": 31.5,
+        "gex_unit": "M",
+        "gex_at": 145.0,
+        "gex2_display": 21.2,
+        "gex2_unit": "M",
+        "gex2_at": 143.0,
+        "gex3_display": 14.8,
+        "gex3_unit": "M",
+        "gex3_at": 140.0,
+        "net_gamma_display": 136.1,
+        "net_gamma_unit": "M",
+        "call_gamma_display": 181.6,
+        "call_gamma_unit": "M",
+        "put_gamma_display": -45.5,
+        "put_gamma_unit": "M",
+        "mp": 138.0,
+        "cw": 145.0,
+        "pw": 135.0
       }
     ]
   }
