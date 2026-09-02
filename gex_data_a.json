@@ -1,4 +1,77 @@
 {
   "date": "2026-09-02",
-  "snapshots": {}
+  "snapshots": {
+    "TSLA": [
+      {
+        "time": "06:51",
+        "spot": 351.96,
+        "gex_display": -35.4,
+        "gex_unit": "M",
+        "gex_at": 350.0,
+        "gex2_display": -35.1,
+        "gex2_unit": "M",
+        "gex2_at": 347.5,
+        "gex3_display": -25.5,
+        "gex3_unit": "M",
+        "gex3_at": 352.5,
+        "net_gamma_display": -98.2,
+        "net_gamma_unit": "M",
+        "call_gamma_display": 192.3,
+        "call_gamma_unit": "M",
+        "put_gamma_display": -290.5,
+        "put_gamma_unit": "M",
+        "mp": 357.5,
+        "cw": 360.0,
+        "pw": 350.0
+      }
+    ],
+    "NVDA": [
+      {
+        "time": "06:51",
+        "spot": 219.88,
+        "gex_display": 162.6,
+        "gex_unit": "M",
+        "gex_at": 220.0,
+        "gex2_display": 100.5,
+        "gex2_unit": "M",
+        "gex2_at": 222.5,
+        "gex3_display": 55.3,
+        "gex3_unit": "M",
+        "gex3_at": 225.0,
+        "net_gamma_display": 307.7,
+        "net_gamma_unit": "M",
+        "call_gamma_display": 454.3,
+        "call_gamma_unit": "M",
+        "put_gamma_display": -146.7,
+        "put_gamma_unit": "M",
+        "mp": 217.5,
+        "cw": 220.0,
+        "pw": 215.0
+      }
+    ],
+    "AAPL": [
+      {
+        "time": "06:51",
+        "spot": 324.86,
+        "gex_display": 98.3,
+        "gex_unit": "M",
+        "gex_at": 325.0,
+        "gex2_display": 82.3,
+        "gex2_unit": "M",
+        "gex2_at": 327.5,
+        "gex3_display": 60.2,
+        "gex3_unit": "M",
+        "gex3_at": 330.0,
+        "net_gamma_display": 166.6,
+        "net_gamma_unit": "M",
+        "call_gamma_display": 502.4,
+        "call_gamma_unit": "M",
+        "put_gamma_display": -335.8,
+        "put_gamma_unit": "M",
+        "mp": 325.0,
+        "cw": 325.0,
+        "pw": 320.0
+      }
+    ]
+  }
 }
