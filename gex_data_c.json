@@ -287,6 +287,28 @@
         "mp": 345.0,
         "cw": 350.0,
         "pw": 340.0
+      },
+      {
+        "time": "08:27",
+        "spot": 347.06,
+        "gex_display": 103.6,
+        "gex_unit": "M",
+        "gex_at": 350.0,
+        "gex2_display": 54.2,
+        "gex2_unit": "M",
+        "gex2_at": 345.0,
+        "gex3_display": 44.0,
+        "gex3_unit": "M",
+        "gex3_at": 355.0,
+        "net_gamma_display": 302.3,
+        "net_gamma_unit": "M",
+        "call_gamma_display": 510.0,
+        "call_gamma_unit": "M",
+        "put_gamma_display": -207.7,
+        "put_gamma_unit": "M",
+        "mp": 342.5,
+        "cw": 350.0,
+        "pw": 337.5
       }
     ],
     "META": [
@@ -575,6 +597,28 @@
         "mp": 672.5,
         "cw": 670.0,
         "pw": 645.0
+      },
+      {
+        "time": "08:27",
+        "spot": 674.9,
+        "gex_display": 107.2,
+        "gex_unit": "M",
+        "gex_at": 670.0,
+        "gex2_display": 81.7,
+        "gex2_unit": "M",
+        "gex2_at": 680.0,
+        "gex3_display": 49.6,
+        "gex3_unit": "M",
+        "gex3_at": 690.0,
+        "net_gamma_display": 431.6,
+        "net_gamma_unit": "M",
+        "call_gamma_display": 636.5,
+        "call_gamma_unit": "M",
+        "put_gamma_display": -204.9,
+        "put_gamma_unit": "M",
+        "mp": 675.0,
+        "cw": 670.0,
+        "pw": 650.0
       }
     ],
     "MU": [
@@ -863,6 +907,28 @@
         "mp": 985.0,
         "cw": 1000.0,
         "pw": 920.0
+      },
+      {
+        "time": "08:27",
+        "spot": 980.63,
+        "gex_display": 89.8,
+        "gex_unit": "M",
+        "gex_at": 1000.0,
+        "gex2_display": 31.5,
+        "gex2_unit": "M",
+        "gex2_at": 975.0,
+        "gex3_display": 31.4,
+        "gex3_unit": "M",
+        "gex3_at": 1020.0,
+        "net_gamma_display": 362.6,
+        "net_gamma_unit": "M",
+        "call_gamma_display": 587.5,
+        "call_gamma_unit": "M",
+        "put_gamma_display": -224.9,
+        "put_gamma_unit": "M",
+        "mp": 955.0,
+        "cw": 1000.0,
+        "pw": 940.0
       }
     ]
   }
