@@ -1,4 +1,29 @@
 {
   "date": "2026-09-28",
-  "snapshots": {}
+  "snapshots": {
+    "NVDA": [
+      {
+        "time": "06:21",
+        "spot": 229.78,
+        "gex_display": 379.9,
+        "gex_unit": "M",
+        "gex_at": 230.0,
+        "gex2_display": 27.1,
+        "gex2_unit": "M",
+        "gex2_at": 232.5,
+        "gex3_display": 15.2,
+        "gex3_unit": "M",
+        "gex3_at": 235.0,
+        "net_gamma_display": 381.7,
+        "net_gamma_unit": "M",
+        "call_gamma_display": 428.6,
+        "call_gamma_unit": "M",
+        "put_gamma_display": -46.9,
+        "put_gamma_unit": "M",
+        "mp": 230.0,
+        "cw": 230.0,
+        "pw": 220.0
+      }
+    ]
+  }
 }
