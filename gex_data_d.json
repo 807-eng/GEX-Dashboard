@@ -815,6 +815,28 @@
         "mp": 778.0,
         "cw": 778.0,
         "pw": 777.0
+      },
+      {
+        "time": "12:19",
+        "spot": 777.25,
+        "gex_display": -608.2,
+        "gex_unit": "M",
+        "gex_at": 777.0,
+        "gex2_display": 574.9,
+        "gex2_unit": "M",
+        "gex2_at": 778.0,
+        "gex3_display": 317.9,
+        "gex3_unit": "M",
+        "gex3_at": 780.0,
+        "net_gamma_display": 139.9,
+        "net_gamma_unit": "M",
+        "call_gamma_display": 6.1,
+        "call_gamma_unit": "B",
+        "put_gamma_display": -6.0,
+        "put_gamma_unit": "B",
+        "mp": 778.0,
+        "cw": 778.0,
+        "pw": 777.0
       }
     ],
     "QQQ": [
@@ -1631,6 +1653,28 @@
         "mp": 748.0,
         "cw": 748.0,
         "pw": 745.0
+      },
+      {
+        "time": "12:19",
+        "spot": 745.14,
+        "gex_display": -1.0,
+        "gex_unit": "B",
+        "gex_at": 745.0,
+        "gex2_display": -636.5,
+        "gex2_unit": "M",
+        "gex2_at": 744.0,
+        "gex3_display": -349.7,
+        "gex3_unit": "M",
+        "gex3_at": 742.0,
+        "net_gamma_display": -3.0,
+        "net_gamma_unit": "B",
+        "call_gamma_display": 595.7,
+        "call_gamma_unit": "M",
+        "put_gamma_display": -3.6,
+        "put_gamma_unit": "B",
+        "mp": 751.0,
+        "cw": 751.0,
+        "pw": 745.0
       }
     ],
     "IWM": [
@@ -2380,6 +2424,28 @@
         "put_gamma_unit": "M",
         "mp": 278.0,
         "cw": 279.0,
+        "pw": 278.0
+      },
+      {
+        "time": "12:19",
+        "spot": 277.91,
+        "gex_display": -162.9,
+        "gex_unit": "M",
+        "gex_at": 278.0,
+        "gex2_display": 20.9,
+        "gex2_unit": "M",
+        "gex2_at": 277.0,
+        "gex3_display": 6.0,
+        "gex3_unit": "M",
+        "gex3_at": 275.0,
+        "net_gamma_display": -136.5,
+        "net_gamma_unit": "M",
+        "call_gamma_display": 174.1,
+        "call_gamma_unit": "M",
+        "put_gamma_display": -310.6,
+        "put_gamma_unit": "M",
+        "mp": 278.0,
+        "cw": 275.0,
         "pw": 278.0
       }
     ]
