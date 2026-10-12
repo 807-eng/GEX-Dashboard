@@ -67,6 +67,28 @@
         "mp": 778.0,
         "cw": 780.0,
         "pw": 775.0
+      },
+      {
+        "time": "06:35",
+        "spot": 779.05,
+        "gex_display": 1.1,
+        "gex_unit": "B",
+        "gex_at": 780.0,
+        "gex2_display": 378.0,
+        "gex2_unit": "M",
+        "gex2_at": 779.0,
+        "gex3_display": 348.5,
+        "gex3_unit": "M",
+        "gex3_at": 782.0,
+        "net_gamma_display": 2.3,
+        "net_gamma_unit": "B",
+        "call_gamma_display": 5.6,
+        "call_gamma_unit": "B",
+        "put_gamma_display": -3.3,
+        "put_gamma_unit": "B",
+        "mp": 778.0,
+        "cw": 780.0,
+        "pw": 775.0
       }
     ],
     "QQQ": [
@@ -135,6 +157,52 @@
         "mp": 752.0,
         "cw": 755.0,
         "pw": 742.0
+      },
+      {
+        "time": "06:35",
+        "spot": 747.47,
+        "gex_display": -296.1,
+        "gex_unit": "M",
+        "gex_at": 742.0,
+        "gex2_display": -207.7,
+        "gex2_unit": "M",
+        "gex2_at": 747.0,
+        "gex3_display": -202.0,
+        "gex3_unit": "M",
+        "gex3_at": 745.0,
+        "net_gamma_display": -1.4,
+        "net_gamma_unit": "B",
+        "call_gamma_display": 1.2,
+        "call_gamma_unit": "B",
+        "put_gamma_display": -2.6,
+        "put_gamma_unit": "B",
+        "mp": 752.0,
+        "cw": 755.0,
+        "pw": 742.0
+      }
+    ],
+    "IWM": [
+      {
+        "time": "06:35",
+        "spot": 278.57,
+        "gex_display": 127.6,
+        "gex_unit": "M",
+        "gex_at": 280.0,
+        "gex2_display": 33.6,
+        "gex2_unit": "M",
+        "gex2_at": 279.0,
+        "gex3_display": -32.3,
+        "gex3_unit": "M",
+        "gex3_at": 278.0,
+        "net_gamma_display": 115.7,
+        "net_gamma_unit": "M",
+        "call_gamma_display": 247.9,
+        "call_gamma_unit": "M",
+        "put_gamma_display": -132.3,
+        "put_gamma_unit": "M",
+        "mp": 279.0,
+        "cw": 280.0,
+        "pw": 278.0
       }
     ]
   }
