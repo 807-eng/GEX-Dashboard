@@ -133,6 +133,28 @@
         "mp": 347.5,
         "cw": 0,
         "pw": 0
+      },
+      {
+        "time": "08:44",
+        "spot": 344.18,
+        "gex_display": -54.9,
+        "gex_unit": "M",
+        "gex_at": 340.0,
+        "gex2_display": -32.0,
+        "gex2_unit": "M",
+        "gex2_at": 345.0,
+        "gex3_display": -27.9,
+        "gex3_unit": "M",
+        "gex3_at": 342.5,
+        "net_gamma_display": -99.9,
+        "net_gamma_unit": "M",
+        "call_gamma_display": 236.3,
+        "call_gamma_unit": "M",
+        "put_gamma_display": -336.2,
+        "put_gamma_unit": "M",
+        "mp": 347.5,
+        "cw": 0,
+        "pw": 0
       }
     ],
     "META": [
@@ -267,6 +289,28 @@
         "mp": 712.5,
         "cw": 0,
         "pw": 0
+      },
+      {
+        "time": "08:44",
+        "spot": 721.88,
+        "gex_display": -107.1,
+        "gex_unit": "M",
+        "gex_at": 730.0,
+        "gex2_display": -58.5,
+        "gex2_unit": "M",
+        "gex2_at": 720.0,
+        "gex3_display": -51.1,
+        "gex3_unit": "M",
+        "gex3_at": 715.0,
+        "net_gamma_display": -332.3,
+        "net_gamma_unit": "M",
+        "call_gamma_display": 467.9,
+        "call_gamma_unit": "M",
+        "put_gamma_display": -800.2,
+        "put_gamma_unit": "M",
+        "mp": 712.5,
+        "cw": 700.0,
+        "pw": 730.0
       }
     ],
     "MU": [
@@ -401,6 +445,28 @@
         "mp": 915.0,
         "cw": 0,
         "pw": 900.0
+      },
+      {
+        "time": "08:44",
+        "spot": 899.62,
+        "gex_display": -82.6,
+        "gex_unit": "M",
+        "gex_at": 900.0,
+        "gex2_display": -21.2,
+        "gex2_unit": "M",
+        "gex2_at": 890.0,
+        "gex3_display": -15.2,
+        "gex3_unit": "M",
+        "gex3_at": 880.0,
+        "net_gamma_display": -178.8,
+        "net_gamma_unit": "M",
+        "call_gamma_display": 259.3,
+        "call_gamma_unit": "M",
+        "put_gamma_display": -438.1,
+        "put_gamma_unit": "M",
+        "mp": 915.0,
+        "cw": 0,
+        "pw": 0
       }
     ]
   }
