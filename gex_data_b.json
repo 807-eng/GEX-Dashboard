@@ -1,4 +1,77 @@
 {
   "date": "2026-10-21",
-  "snapshots": {}
+  "snapshots": {
+    "MSFT": [
+      {
+        "time": "06:24",
+        "spot": 530.66,
+        "gex_display": 15.2,
+        "gex_unit": "M",
+        "gex_at": 540.0,
+        "gex2_display": -13.2,
+        "gex2_unit": "M",
+        "gex2_at": 530.0,
+        "gex3_display": 9.8,
+        "gex3_unit": "M",
+        "gex3_at": 545.0,
+        "net_gamma_display": 11.9,
+        "net_gamma_unit": "M",
+        "call_gamma_display": 92.0,
+        "call_gamma_unit": "M",
+        "put_gamma_display": -80.1,
+        "put_gamma_unit": "M",
+        "mp": 532.5,
+        "cw": 540.0,
+        "pw": 530.0
+      }
+    ],
+    "AMZN": [
+      {
+        "time": "06:24",
+        "spot": 262.99,
+        "gex_display": 17.0,
+        "gex_unit": "M",
+        "gex_at": 265.0,
+        "gex2_display": null,
+        "gex2_unit": null,
+        "gex2_at": null,
+        "gex3_display": null,
+        "gex3_unit": null,
+        "gex3_at": null,
+        "net_gamma_display": 17.0,
+        "net_gamma_unit": "M",
+        "call_gamma_display": 17.0,
+        "call_gamma_unit": "M",
+        "put_gamma_display": null,
+        "put_gamma_unit": null,
+        "mp": 265.0,
+        "cw": 265.0,
+        "pw": 0
+      }
+    ],
+    "SPCX": [
+      {
+        "time": "06:24",
+        "spot": 160.04,
+        "gex_display": 6.5,
+        "gex_unit": "M",
+        "gex_at": 155.0,
+        "gex2_display": -2.7,
+        "gex2_unit": "M",
+        "gex2_at": 145.0,
+        "gex3_display": 2.0,
+        "gex3_unit": "M",
+        "gex3_at": 160.0,
+        "net_gamma_display": 8.1,
+        "net_gamma_unit": "M",
+        "call_gamma_display": 24.3,
+        "call_gamma_unit": "M",
+        "put_gamma_display": -16.1,
+        "put_gamma_unit": "M",
+        "mp": 148.0,
+        "cw": 155.0,
+        "pw": 145.0
+      }
+    ]
+  }
 }
