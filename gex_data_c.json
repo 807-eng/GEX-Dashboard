@@ -683,6 +683,28 @@
         "mp": 335.0,
         "cw": 335.0,
         "pw": 332.5
+      },
+      {
+        "time": "11:57",
+        "spot": 333.73,
+        "gex_display": -13.8,
+        "gex_unit": "M",
+        "gex_at": 332.5,
+        "gex2_display": -8.9,
+        "gex2_unit": "M",
+        "gex2_at": 330.0,
+        "gex3_display": 2.1,
+        "gex3_unit": "M",
+        "gex3_at": 335.0,
+        "net_gamma_display": -20.8,
+        "net_gamma_unit": "M",
+        "call_gamma_display": 5.0,
+        "call_gamma_unit": "M",
+        "put_gamma_display": -25.9,
+        "put_gamma_unit": "M",
+        "mp": 335.0,
+        "cw": 335.0,
+        "pw": 332.5
       }
     ],
     "META": [
