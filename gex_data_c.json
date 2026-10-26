@@ -177,6 +177,28 @@
         "mp": 322.5,
         "cw": 322.5,
         "pw": 320.0
+      },
+      {
+        "time": "07:31",
+        "spot": 320.4,
+        "gex_display": -38.8,
+        "gex_unit": "M",
+        "gex_at": 320.0,
+        "gex2_display": -9.6,
+        "gex2_unit": "M",
+        "gex2_at": 317.5,
+        "gex3_display": -8.6,
+        "gex3_unit": "M",
+        "gex3_at": 315.0,
+        "net_gamma_display": -35.7,
+        "net_gamma_unit": "M",
+        "call_gamma_display": 50.8,
+        "call_gamma_unit": "M",
+        "put_gamma_display": -86.5,
+        "put_gamma_unit": "M",
+        "mp": 322.5,
+        "cw": 325.0,
+        "pw": 320.0
       }
     ],
     "META": [
@@ -354,6 +376,28 @@
         "put_gamma_unit": "M",
         "mp": 637.5,
         "cw": 660.0,
+        "pw": 630.0
+      },
+      {
+        "time": "07:31",
+        "spot": 635.69,
+        "gex_display": -14.8,
+        "gex_unit": "M",
+        "gex_at": 630.0,
+        "gex2_display": -7.5,
+        "gex2_unit": "M",
+        "gex2_at": 625.0,
+        "gex3_display": -7.2,
+        "gex3_unit": "M",
+        "gex3_at": 627.5,
+        "net_gamma_display": -25.7,
+        "net_gamma_unit": "M",
+        "call_gamma_display": 69.2,
+        "call_gamma_unit": "M",
+        "put_gamma_display": -94.9,
+        "put_gamma_unit": "M",
+        "mp": 637.5,
+        "cw": 637.5,
         "pw": 630.0
       }
     ],
@@ -533,6 +577,28 @@
         "mp": 895.0,
         "cw": 895.0,
         "pw": 885.0
+      },
+      {
+        "time": "07:31",
+        "spot": 888.02,
+        "gex_display": 39.1,
+        "gex_unit": "M",
+        "gex_at": 895.0,
+        "gex2_display": 34.9,
+        "gex2_unit": "M",
+        "gex2_at": 900.0,
+        "gex3_display": 8.5,
+        "gex3_unit": "M",
+        "gex3_at": 910.0,
+        "net_gamma_display": 89.4,
+        "net_gamma_unit": "M",
+        "call_gamma_display": 210.3,
+        "call_gamma_unit": "M",
+        "put_gamma_display": -120.9,
+        "put_gamma_unit": "M",
+        "mp": 895.0,
+        "cw": 895.0,
+        "pw": 870.0
       }
     ]
   }
