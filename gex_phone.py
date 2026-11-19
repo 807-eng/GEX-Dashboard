@@ -76,6 +76,17 @@ class Shot:
         left = cx - w / 2
         vals = [sum(self.px(left - 0.004 - i * 0.003, cy)) / 3 for i in range(8)]
         return max(vals) - min(vals) >= 15 and max(vals) < 120   # grey dash on near-black cell
+    def handle_y(self, ymin=0.08, ymax=0.8):
+        """y (fraction) of a sheet's light-grey drag handle bar near the horizontal centre, or None. Works at any sheet height/header state."""
+        xs = [0.45 + i * 0.01 for i in range(11)]
+        for yi in range(int(ymin * self.H), int(ymax * self.H)):
+            fy = yi / self.H; ok = 0
+            for fx in xs:
+                r, g, b = self.px(fx, fy)
+                if 80 <= r <= 230 and abs(r - g) < 22 and abs(g - b) < 22: ok += 1
+            if ok >= 9 and sum(self.px(0.5, max(0, (yi - 8) / self.H))) < 260 and sum(self.px(0.5, min(0.999, (yi + 8) / self.H))) < 260:
+                return fy
+        return None
     def has(self, sub): return any(sub.lower() in t[0].lower() for t in self.items)
 
 def look():
@@ -136,7 +147,7 @@ def normalize():
         # sheet in a half-height detent hides the tab bar: tap its drag handle (just above the ticker header)
         anchor = next((t for t in s.items if t[0] in ("Heatmap", "BID") and t[2] > 0.4), None)   # sheet labels sit ~0.06 below its handle
         if not anchor: return s
-        tap_frac(0.5, anchor[2] - 0.06); time.sleep(2); s = look()
+        tap_frac(0.5, s.handle_y() or (anchor[2] - 0.06)); time.sleep(2); s = look()
     return s
 
 def chip_match(text, t):
@@ -152,11 +163,11 @@ def to_favorites():
         if s.has("FAVORITES") and not sheet: return s
         check_window(); w = screen_info()["window"]
         if s.has("On-device") or s.has("Ask, and watch"):
-            tap_frac(0.5, 0.127); time.sleep(2); continue          # assistant overlay: tap its top handle
+            tap_frac(0.5, s.handle_y() or 0.127); time.sleep(2); continue   # assistant overlay: tap its top handle
         hm = next((t for t in s.items if t[0] == "Heatmap"), None)
         tr = s.find("TRACK RECORD")
-        hy = hm[2] - 0.055 if hm else (tr[2] - 0.17 if tr else (0.495 if (s.has("SWEEP") or s.has("Block")) else None))
-        if hy is None: hy = 0.127
+        hy = s.handle_y()                                # find the sheet's handle bar by its pixels (header height varies)
+        if hy is None: hy = hm[2] - 0.055 if hm else (tr[2] - 0.17 if tr else (0.495 if (s.has("SWEEP") or s.has("Block")) else 0.127))
         drag(w["x"] + w["w"] * 0.5, w["y"] + w["h"] * hy, w["x"] + w["w"] * 0.5, w["y"] + w["h"] * 0.97, duration=0.6)   # drag the sheet down
         time.sleep(2.5)
     raise RuntimeError("could not get back to the Favorites list")
@@ -164,7 +175,17 @@ def to_favorites():
 def goto_ticker(t):
     """Tap the ticker's own GEX button on the Favorites list, wait for the heatmap sheet."""
     to_favorites(); time.sleep(1.5); s = look()          # list may still be animating after a sheet closes
-    lab = next((x for x in s.items if x[1] < 0.25 and 0.12 < x[2] < 0.95 and chip_match(x[0], t)), None)
+    find_lab = lambda s: next((x for x in s.items if x[1] < 0.25 and 0.12 < x[2] < 0.92 and chip_match(x[0], t)), None)
+    lab = find_lab(s)
+    if not lab:                                          # ticker not on the first screen: scroll the Favorites list (down, then back up)
+        w = screen_info()["window"]; at = (w["x"] + w["w"] * 0.7, w["y"] + w["h"] * 0.5)
+        for direction, n in (("down", 6), ("up", 12)):
+            for _ in range(n):
+                check_window(); scroll(direction, 0.35, at=at); time.sleep(1.2)
+                s = look(); lab = find_lab(s)
+                if lab: break
+            if lab: break
+    if not lab: raise RuntimeError(f"{t} is not in the Favorites list on this phone (add it as a favorite)")
     if DEBUG: print("   row label", t, lab, [(x[0], round(x[1],2), round(x[2],2)) for x in s.items if x[0].upper() == 'GEX'])
     if not lab: return None
     # The row's GEX button sits ~0.02 above the ticker label, at the same x on every row (OCR often misses an individual GEX label)
