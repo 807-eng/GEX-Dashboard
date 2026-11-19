@@ -104,10 +104,15 @@ def normalize():
         if c: tap_frac(c[1], c[2]); time.sleep(1); s = look()
         if s.has("Ask, and watch") or s.find("GEX", 0.9, 1): return s
         # sheet in a half-height detent hides the tab bar: tap its drag handle (just above the ticker header)
-        hdr = [t for t in s.items if t[0] in ("NVDA","TSLA","AAPL","SPY","QQQ","IWM","SPX") and t[1] < 0.3 and t[2] > 0.4]
-        if not hdr: return s
-        tap_frac(0.5, hdr[0][2] - 0.02); time.sleep(2); s = look()
+        anchor = next((t for t in s.items if t[0] in ("Heatmap", "BID") and t[2] > 0.4), None)   # sheet labels sit ~0.06 below its handle
+        if not anchor: return s
+        tap_frac(0.5, anchor[2] - 0.06); time.sleep(2); s = look()
     return s
+
+def chip_match(text, t):
+    """OCR reads chips with icon noise ('= SPY', '• AAPLI', 'IW M'): compare letters only."""
+    c = re.sub(r"[^A-Z]", "", text.upper())
+    return c == t or (len(c) <= len(t) + 2 and (c.startswith(t) or c.endswith(t)))
 
 def goto_ticker(t):
     s = normalize()
@@ -116,7 +121,7 @@ def goto_ticker(t):
         s = wait_for(lambda s: s.has("Ask, and watch"), 5)
         if not s: return None
     time.sleep(1.5); s = look()                # let the overlay finish animating before reading chip positions
-    chip = next((x for x in s.items if 0.3 < x[2] < 0.7 and x[0].upper().split()[-1:] == [t]), None)
+    chip = next((x for x in s.items if 0.3 < x[2] < 0.7 and chip_match(x[0], t)), None)
     if DEBUG: print("   chip", t, chip)
     if not chip:
         if DEBUG: print("   items", [(x[0], round(x[1],2), round(x[2],2)) for x in s.items][:30])
@@ -160,15 +165,57 @@ def parse(shot, ticker, expiry_str):
     hdr = shot.find(expiry_str)
     strikes = {}
     if hdr:
+        ladder = sorted((t for t in items if re.fullmatch(r"\d{2,4}", t[0]) and t[1] < 0.25 and 0.25 < t[2] < 0.97), key=lambda t: t[2])
+        vals_ = [int(t[0]) for t in ladder]            # on screen the strikes must strictly descend top -> bottom
+        bad = {ladder[i][0] for i in range(1, len(ladder) - 1) if vals_[i - 1] > vals_[i + 1] and not (vals_[i + 1] < vals_[i] < vals_[i - 1])}   # OCR outlier between two consistent neighbours
         for t in items:
-            if re.fullmatch(r"\d{2,4}", t[0]) and t[1] < 0.25:
+            if re.fullmatch(r"\d{2,4}", t[0]) and t[1] < 0.25 and t[0] not in bad:
                 cells = [c for c in items if abs(c[2] - t[2]) < 0.012 and abs(c[1] - hdr[1]) < 0.06 and parse_val(c[0]) is not None]
                 if cells:
                     c = cells[0]; v = parse_val(c[0])
-                    if v > 0 and sum(shot.px(c[1] - c[3] / 2 - 0.03, c[2])) < 150 and shot.dash_left_of(c): v = -v
+                    r_, g_, b_ = shot.px(c[1] - c[3] / 2 - 0.012, c[2])   # cell background just left of the text
+                    if r_ > 110 and r_ > g_ * 1.6: v = -abs(v)             # red cell = negative GEX
+                    elif g_ > 110 and g_ > r_ * 1.4: v = abs(v)            # green cell = positive GEX
+                    elif v > 0 and sum((r_, g_, b_)) < 150 and shot.dash_left_of(c): v = -v   # faint grey minus dropped by OCR
                     if DEBUG: print("  ", t[0], c[0], "bg", shot.px(c[1] - 0.05, c[2]), shot.px(c[1] + 0.05, c[2]))
                     strikes[float(t[0])] = v
     return net, int(cw) if cw else None, int(pw) if pw else None, spot, strikes, hdr is not None
+
+def collect_all_strikes(ticker, exp, strikes, spot=None):
+    """Scroll the whole strike ladder (to the top, then down to the bottom) and merge every strike seen,
+    like the website table gave us. End of list = the strike labels on screen stop changing (twice in a row)."""
+    normalize()                                         # sheet must be full height or the list will not scroll
+    w = screen_info()["window"]; at = (w["x"] + w["w"] / 2, w["y"] + w["h"] * 0.6)
+    allk = dict(strikes)
+    labels = lambda sh: frozenset(t[0] for t in sh.items if re.fullmatch(r"\d{2,4}", t[0]) and t[1] < 0.25 and 0.25 < t[2] < 0.95)
+    for direction in ("up", "down"):
+        prev, same = None, 0
+        for _ in range(30):
+            scroll(direction, 0.4, at=at); time.sleep(1.6)
+            sh = look()
+            for k, v in parse(sh, ticker, exp)[4].items():
+                if k in allk and abs(abs(allk[k]) - abs(v)) < 1e-6 * max(abs(v), 1) and allk[k] != v:
+                    v = -abs(v)                            # same strike read twice with different signs: a dropped minus is the usual error
+                allk[k] = v
+            lab = labels(sh)
+            same = same + 1 if lab == prev else 0
+            if same >= 2: break
+            prev = lab
+        normalize()                                     # overscrolling past the top/bottom can collapse the sheet: re-expand
+    for k1 in list(allk):                               # OCR misreads one digit of a strike label (360 -> 260): same value, labels 100 apart
+        for k2 in list(allk):
+            if k1 in allk and k2 in allk and k1 != k2 and abs(k1 - k2) == 100 and allk[k1] == allk[k2]:
+                allk.pop(k1 if abs(k1 - (spot or k2)) > abs(k2 - (spot or k1)) else k2)
+    if spot:                                            # the app only shows +/-30% around spot: drop OCR junk outside it
+        allk = {k: v for k, v in allk.items() if abs(k - spot) / spot <= 0.30}
+    if DEBUG: print("   strikes collected:", len(allk))
+    return allk
+
+def max_pain(strikes, spot):
+    rows = sorted(strikes.items(), reverse=True)   # table order: high strike -> low strike
+    flips = [rows[i][0] for i in range(len(rows) - 1) if rows[i][1] * rows[i + 1][1] < 0]
+    if flips: return min(flips, key=lambda x: abs(x - spot))
+    return min(rows, key=lambda kv: abs(kv[1]))[0] if rows else None
 
 def fmt(v):
     if v is None: return None, None
@@ -176,7 +223,7 @@ def fmt(v):
 
 def make_entry(now, net, cw, pw, spot, strikes, expiry_str):
     top = sorted(strikes.items(), key=lambda kv: -abs(kv[1]))[:3] + [(None, None)] * 3
-    e = {"time": now.strftime("%H:%M"), "spot": spot, "expiry": expiry_str, "mp": None, "cw": cw, "pw": pw}
+    e = {"time": now.strftime("%H:%M"), "spot": spot, "expiry": expiry_str, "mp": max_pain(strikes, spot), "cw": cw, "pw": pw}
     for i, (k, v) in enumerate(top[:3]):
         pre = "gex" if i == 0 else f"gex{i + 1}"
         d, u = fmt(v); e[f"{pre}_display"], e[f"{pre}_unit"], e[f"{pre}_at"] = d, u, k
@@ -249,6 +296,7 @@ for t in TICKERS:
         if net is None or not strikes or spot is None:
             shot = look()
             net, cw, pw, spot, strikes, found = parse(shot, t, exp)   # one re-read for OCR flakes
+        if strikes: strikes = collect_all_strikes(t, exp, strikes, spot)
         if net is None or not strikes or spot is None:
             raise RuntimeError(f"incomplete read (net={net}, spot={spot}, strikes={len(strikes)}, expiry col {exp} visible={found})")
         if DEBUG: print("   signed:", {int(k): round(v / 1e6, 2) for k, v in sorted(strikes.items())})
