@@ -193,6 +193,7 @@ def goto_ticker(t):
                 if lab: break
             if lab: break
     if not lab: raise RuntimeError(f"{t} is not in the Favorites list on this phone (add it as a favorite)")
+    time.sleep(1.8); s = look(); lab = find_lab(s) or lab   # let any scroll momentum stop, then use the settled position
     if DEBUG: print("   row label", t, lab, [(x[0], round(x[1],2), round(x[2],2)) for x in s.items if x[0].upper() == 'GEX'])
     if not lab: return None
     # The row's GEX button sits ~0.02 above the ticker label, at the same x on every row (OCR often misses an individual GEX label)
