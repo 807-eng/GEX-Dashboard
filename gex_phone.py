@@ -183,6 +183,7 @@ def goto_ticker(t):
     return s
 
 # ── parsing ──────────────────────────────────────────────────────────────────
+STRIKE = r"\d{2,4}(?:\.\d{1,2})?"
 VAL = re.compile(r"^([-–−+])?\s*(\d+(?:\.\d+)?)([MKB])$")
 MULT = {"K": 1e3, "M": 1e6, "B": 1e9}
 def parse_val(txt, shot=None, fx=None, fy=None):
@@ -219,11 +220,11 @@ def parse(shot, ticker, expiry_str):
         hdr = next((t for t in cols if (int(t[0][:2]), int(t[0][3:5])) >= (tm, td)), None)
     strikes = {}
     if hdr:
-        ladder = sorted((t for t in items if re.fullmatch(r"\d{2,4}", t[0]) and t[1] < 0.25 and 0.25 < t[2] < 0.97), key=lambda t: t[2])
-        vals_ = [int(t[0]) for t in ladder]            # on screen the strikes must strictly descend top -> bottom
+        ladder = sorted((t for t in items if re.fullmatch(STRIKE, t[0]) and t[1] < 0.25 and 0.25 < t[2] < 0.97), key=lambda t: t[2])
+        vals_ = [float(t[0]) for t in ladder]            # on screen the strikes must strictly descend top -> bottom
         bad = {ladder[i][0] for i in range(1, len(ladder) - 1) if vals_[i - 1] > vals_[i + 1] and not (vals_[i + 1] < vals_[i] < vals_[i - 1])}   # OCR outlier between two consistent neighbours
         for t in items:
-            if re.fullmatch(r"\d{2,4}", t[0]) and t[1] < 0.25 and t[0] not in bad:
+            if re.fullmatch(STRIKE, t[0]) and t[1] < 0.25 and t[0] not in bad:
                 cells = [c for c in items if abs(c[2] - t[2]) < 0.012 and abs(c[1] - hdr[1]) < 0.06 and parse_val(c[0]) is not None]
                 if cells:
                     c = cells[0]; v = parse_val(c[0])
@@ -244,7 +245,7 @@ def collect_all_strikes(ticker, exp, strikes, spot=None):
     normalize()                                         # sheet must be full height or the list will not scroll
     w = screen_info()["window"]; at = (w["x"] + w["w"] / 2, w["y"] + w["h"] * 0.6)
     allk = dict(strikes)
-    labels = lambda sh: frozenset(t[0] for t in sh.items if re.fullmatch(r"\d{2,4}", t[0]) and t[1] < 0.25 and 0.25 < t[2] < 0.95)
+    labels = lambda sh: frozenset(t[0] for t in sh.items if re.fullmatch(STRIKE, t[0]) and t[1] < 0.25 and 0.25 < t[2] < 0.95)
     for direction in ("up", "down"):
         prev, same = None, 0
         for _ in range(30):
@@ -343,28 +344,42 @@ def git_push(now):
 # ── main ─────────────────────────────────────────────────────────────────────
 t0 = time.time(); now = datetime.now()
 launch()
-stored = load_today(); ok_list, failed = [], []
-for t in TICKERS:
+stored = load_today()
+
+def read_ticker(t):
     exp = get_expiry(t).strftime("%m/%d")
-    try:
-        shot = goto_ticker(t)
-        if not shot: raise RuntimeError("navigation failed")
+    shot = goto_ticker(t)
+    if not shot: raise RuntimeError("navigation failed")
+    for _ in range(3):                                   # re-read if OCR missed the net GEX, price, walls or strikes
         net, cw, pw, spot, strikes, found = parse(shot, t, exp)
-        if net is None or not strikes or spot is None:
-            shot = look()
-            net, cw, pw, spot, strikes, found = parse(shot, t, exp)   # one re-read for OCR flakes
-        if found: exp = found                      # actual column used (may differ from target after the close)
-        if strikes: strikes = collect_all_strikes(t, exp, strikes, spot)
-        if net is None or not strikes or spot is None:
-            raise RuntimeError(f"incomplete read (net={net}, spot={spot}, strikes={len(strikes)}, expiry col {exp} visible={found})")
-        if DEBUG: print("   signed:", {int(k): round(v / 1e6, 2) for k, v in sorted(strikes.items())})
-        stored["snapshots"].setdefault(t, []).append(make_entry(now, net, cw, pw, spot, strikes, exp))
-        ok_list.append(t); print(f"OK   {t} {exp} spot {spot} net {net/1e6:.0f}M cw {cw} pw {pw} strikes {len(strikes)}")
-    except WindowChanged:
-        raise                                    # abort the whole run: never write/push a page from a moved window
-    except Exception as e:
-        failed.append(t); print(f"FAIL {t}: {e}")
-if ok_list:
+        if net is not None and strikes and spot is not None and cw and pw: break
+        shot = look()
+    if found: exp = found                                # actual column used (may differ from target after the close)
+    if not (net is not None and strikes and spot is not None and cw and pw):
+        raise RuntimeError(f"incomplete read (net={net}, spot={spot}, cw={cw}, pw={pw}, strikes={len(strikes)}, expiry col {exp} visible={found})")
+    strikes = collect_all_strikes(t, exp, strikes, spot)
+    if len(strikes) < 3: raise RuntimeError(f"only {len(strikes)} strikes after scrolling")
+    if DEBUG: print("   signed:", {k: round(v / 1e6, 2) for k, v in sorted(strikes.items())})
+    print(f"OK   {t} {exp} spot {spot} net {net/1e6:.0f}M cw {cw} pw {pw} strikes {len(strikes)}")
+    return make_entry(datetime.now(), net, cw, pw, spot, strikes, exp)
+
+entries, failed = {}, []
+for t in TICKERS:
+    for attempt in (1, 2):                               # one retry per ticker
+        try:
+            entries[t] = read_ticker(t); break
+        except WindowChanged:
+            raise                                        # abort the whole run: never write/push a page from a moved window
+        except Exception as e:
+            print(f"FAIL {t} (attempt {attempt}): {e}")
+    else:
+        failed.append(t)
+
+ok_list = list(entries)
+if failed:                                               # all-or-nothing: never publish a partial page
+    print(f"NOT WRITTEN/PUSHED: {len(failed)} of {len(TICKERS)} tickers failed: {failed}")
+else:
+    for t, e in entries.items(): stored["snapshots"].setdefault(t, []).append(e)
     json.dump(stored, open(DATA_FILE, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
     write_html(stored, now)
     if PUSH: git_push(now)
