@@ -168,6 +168,7 @@ def to_favorites():
         tr = s.find("TRACK RECORD")
         hy = s.handle_y()                                # find the sheet's handle bar by its pixels (header height varies)
         if hy is None: hy = hm[2] - 0.055 if hm else (tr[2] - 0.17 if tr else (0.495 if (s.has("SWEEP") or s.has("Block")) else 0.127))
+        else: hy += 0.012                                # start just below the bar: a drag right at the screen's top edge is ignored
         drag(w["x"] + w["w"] * 0.5, w["y"] + w["h"] * hy, w["x"] + w["w"] * 0.5, w["y"] + w["h"] * 0.97, duration=0.6)   # drag the sheet down
         time.sleep(2.5)
     raise RuntimeError("could not get back to the Favorites list")
