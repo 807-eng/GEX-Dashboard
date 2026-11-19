@@ -87,6 +87,12 @@ class Shot:
             if ok >= 9 and sum(self.px(0.5, max(0, (yi - 8) / self.H))) < 260 and sum(self.px(0.5, min(0.999, (yi + 8) / self.H))) < 260:
                 return fy
         return None
+    def header_zone(self):
+        """(ylo, yhi) of the open sheet's header (ticker, price): below its drag handle, above the Heatmap tab."""
+        hm = self.find("Heatmap")
+        if not hm: return None
+        hy = self.handle_y(0.05, hm[2] - 0.03)
+        return ((hy if hy is not None else hm[2] - 0.14), hm[2] - 0.02)
     def has(self, sub): return any(sub.lower() in t[0].lower() for t in self.items)
 
 def look():
@@ -198,7 +204,8 @@ def goto_ticker(t):
     if not s: return None
     s = look()
     hm = s.find("Heatmap")
-    hdr_tk = [x for x in s.items if hm and hm[2] - 0.14 < x[2] < hm[2] - 0.02 and x[1] < 0.4 and chip_match(x[0], t)]
+    z = s.header_zone()
+    hdr_tk = [x for x in s.items if z and z[0] < x[2] < z[1] and x[1] < 0.4 and chip_match(x[0], t)]
     if not hdr_tk:
         if DEBUG: print("   wrong sheet opened for", t)
         return None
@@ -231,7 +238,8 @@ def parse(shot, ticker, expiry_str):
     hm = shot.find("Heatmap")                           # header zone (ticker, price, change; maybe an expanded stats row) sits above the tabs
     cand = []
     if hm:
-        zone = [t for t in items if hm[2] - 0.14 < t[2] < hm[2] - 0.02 and t[1] > 0.4 and re.match(r"(\d{1,4}\.\d\d)\b", t[0])]
+        z = shot.header_zone()
+        zone = [t for t in items if z and z[0] < t[2] < z[1] and t[1] > 0.4 and re.match(r"(\d{1,4}\.\d\d)\b", t[0])]
         if zone:
             ytop = min(t[2] for t in zone)               # topmost row = price row (below it come BID/ASK/VWAP when expanded)
             cand = [float(re.match(r"(\d{1,4}\.\d\d)\b", t[0]).group(1)) for t in sorted(zone, key=lambda t: t[1]) if t[2] < ytop + 0.015]
@@ -369,16 +377,20 @@ t0 = time.time(); now = datetime.now()
 launch()
 stored = load_today()
 
+def walls_ok(shot, cw, pw):
+    """A wall must be read if its label is on screen; the app shows no call/put wall at all in some states (e.g. deep negative gamma)."""
+    return (cw or not shot.has("CALL WALL")) and (pw or not shot.has("PUT WALL"))
+
 def read_ticker(t):
     exp = get_expiry(t).strftime("%m/%d")
     shot = goto_ticker(t)
     if not shot: raise RuntimeError("navigation failed")
     for _ in range(3):                                   # re-read if OCR missed the net GEX, price, walls or strikes
         net, cw, pw, spot, strikes, found = parse(shot, t, exp)
-        if net is not None and strikes and spot is not None and cw and pw: break
+        if net is not None and strikes and spot is not None and walls_ok(shot, cw, pw): break
         shot = look()
     if found: exp = found                                # actual column used (may differ from target after the close)
-    if not (net is not None and strikes and spot is not None and cw and pw):
+    if not (net is not None and strikes and spot is not None and walls_ok(shot, cw, pw)):
         raise RuntimeError(f"incomplete read (net={net}, spot={spot}, cw={cw}, pw={pw}, strikes={len(strikes)}, expiry col {exp} visible={found})")
     strikes = collect_all_strikes(t, exp, strikes, spot)
     if len(strikes) < 3: raise RuntimeError(f"only {len(strikes)} strikes after scrolling")
