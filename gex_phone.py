@@ -198,7 +198,8 @@ def goto_ticker(t):
     if not lab: return None
     # The row's GEX button sits ~0.02 above the ticker label, at the same x on every row (OCR often misses an individual GEX label)
     gx = sorted(x[1] for x in s.items if x[0].upper() == "GEX" and x[1] < 0.6)
-    btn = (gx[len(gx) // 2] if gx else 0.445, lab[2] - 0.022)
+    same_row = [x for x in s.items if x[0].upper() == "GEX" and x[1] < 0.6 and abs(x[2] - (lab[2] - 0.022)) < 0.03]   # rows with 4 buttons have GEX further left than rows with 5
+    btn = (same_row[0][1], same_row[0][2]) if same_row else (gx[len(gx) // 2] if gx else 0.445, lab[2] - 0.022)
     tap_frac(btn[0], btn[1])
     s = wait_for(lambda s: s.has("NET GEX"), 12)
     time.sleep(1.5)
