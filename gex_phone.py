@@ -104,7 +104,7 @@ def wait_for(pred, timeout=10, step=1.0):
     return None
 
 # ── navigation ───────────────────────────────────────────────────────────────
-IN_APP = lambda s: not s.has("Top Hit") and not s.has("Suggestions") and (s.has("Ask, and watch") or s.has("On-device") or s.has("NET GEX") or s.has("FAVORITES") or s.find("GEX", 0.9, 1) is not None or s.has("Heatmap"))
+IN_APP = lambda s: not s.has("Top Hit") and not s.has("Suggestions") and (s.has("Ask, and watch") or s.has("On-device") or s.has("NET GEX") or s.has("FAVORITES") or s.has("INDICES") or s.has("ETFS") or s.has("GEX") or s.find("GEX", 0.9, 1) is not None or s.has("Heatmap"))
 
 def launch():
     """Get into the app. If it is already on screen do nothing; otherwise Spotlight -> tap the Top Hit icon."""
@@ -160,7 +160,7 @@ def to_favorites():
     for _ in range(8):
         s = look()
         sheet = any(s.has(k) for k in ("NET GEX", "Heatmap", "TRACK RECORD", "SWEEP", "On-device", "Ask, and watch", "Filter"))
-        if s.has("FAVORITES") and not sheet: return s
+        if not sheet and (s.has("FAVORITES") or s.has("INDICES") or s.has("ETFS") or s.has("GEX")): return s   # list may be scrolled away from the FAVORITES header
         check_window(); w = screen_info()["window"]
         if s.has("On-device") or s.has("Ask, and watch"):
             tap_frac(0.5, s.handle_y() or 0.127); time.sleep(2); continue   # assistant overlay: tap its top handle
@@ -197,7 +197,7 @@ def goto_ticker(t):
     if not s: return None
     s = look()
     hm = s.find("Heatmap")
-    hdr_tk = [x for x in s.items if hm and abs(x[2] - (hm[2] - 0.045)) < 0.035 and x[1] < 0.4 and chip_match(x[0], t)]
+    hdr_tk = [x for x in s.items if hm and hm[2] - 0.14 < x[2] < hm[2] - 0.02 and x[1] < 0.4 and chip_match(x[0], t)]
     if not hdr_tk:
         if DEBUG: print("   wrong sheet opened for", t)
         return None
@@ -227,12 +227,13 @@ def parse(shot, ticker, expiry_str):
         mm = re.fullmatch(r"([-–−+])?\s*\$?\s*(\d[\d,]*(?:\.\d+)?)", nraw.replace(" ", ""))
         if mm: net = (-1 if mm.group(1) in ("-", "–", "−") else 1) * float(mm.group(2).replace(",", ""))
     cw = re.sub(r"\D", "", above("CALL WALL") or ""); pw = re.sub(r"\D", "", above("PUT WALL") or "")
-    hm = shot.find("Heatmap")                           # the header row (ticker, price, change) sits just above the Heatmap/Levels tabs
-    hy = hm[2] - 0.045 if hm else None
+    hm = shot.find("Heatmap")                           # header zone (ticker, price, change; maybe an expanded stats row) sits above the tabs
     cand = []
-    for t in sorted(items, key=lambda t: t[1]):          # price-like numbers on that row, left to right (price comes before the change)
-        m = re.match(r"(\d{1,4}\.\d\d)\b", t[0])
-        if hy is not None and m and abs(t[2] - hy) < 0.035 and t[1] > 0.4: cand.append(float(m.group(1)))
+    if hm:
+        zone = [t for t in items if hm[2] - 0.14 < t[2] < hm[2] - 0.02 and t[1] > 0.4 and re.match(r"(\d{1,4}\.\d\d)\b", t[0])]
+        if zone:
+            ytop = min(t[2] for t in zone)               # topmost row = price row (below it come BID/ASK/VWAP when expanded)
+            cand = [float(re.match(r"(\d{1,4}\.\d\d)\b", t[0]).group(1)) for t in sorted(zone, key=lambda t: t[1]) if t[2] < ytop + 0.015]
     spot = cand[0] if cand else None
     hdr = shot.find(expiry_str)
     if not hdr:                                         # target expiry gone (e.g. 0DTE after the close): use the first column dated on/after it
