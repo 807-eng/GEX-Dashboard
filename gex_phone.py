@@ -17,7 +17,25 @@ TICKERS = os.environ.get("TICKERS", "TSLA,NVDA,AAPL,SPY,QQQ,IWM").split(",")
 MWF = {"TSLA", "NVDA", "AAPL"}          # same expiry rule as gex_a: Mon/Wed/Fri expiries, else next day
 DEBUG = os.environ.get("DEBUG") == "1"
 PUSH = os.environ.get("PUSH") == "1"
-IMG = tuple(screen_info()["img_px"])
+class WindowChanged(Exception): pass
+MENU = 'tell application "System Events" to tell process "iPhone Mirroring" to click menu item "%s" of menu "View" of menu bar 1'
+def _menu(item): subprocess.run(["osascript", "-e", MENU % item], capture_output=True, timeout=20); time.sleep(1.5)
+
+def fix_window(target_w=460):
+    """Always run at the same Mirroring size: View > Actual Size, then Zoom In until ~target_w wide."""
+    _menu("Actual Size")
+    for _ in range(8):
+        if screen_info()["window"]["w"] >= target_w: break
+        _menu("Zoom In")
+    w = screen_info()["window"]
+    return (w["w"], w["h"]), tuple(screen_info()["img_px"])
+
+BASE, IMG = fix_window()
+
+def check_window():
+    w = screen_info()["window"]
+    if abs(w["w"] - BASE[0]) > 3 or abs(w["h"] - BASE[1]) > 3:
+        raise WindowChanged(f"Mirroring window changed size {BASE} -> {(w['w'], w['h'])}")
 
 # ── expiry (same rule as gex_a.py get_expiry) ────────────────────────────────
 def get_expiry(ticker):
@@ -63,7 +81,8 @@ class Shot:
 def look():
     time.sleep(0.4); return Shot(screenshot())
 
-def tap_frac(x, y): tap_image_point(x * IMG[0], y * IMG[1], image_size=IMG)
+def tap_frac(x, y):
+    check_window(); tap_image_point(x * IMG[0], y * IMG[1], image_size=IMG)
 
 def wait_for(pred, timeout=10, step=1.0):
     end = time.time() + timeout; s = None
@@ -74,13 +93,14 @@ def wait_for(pred, timeout=10, step=1.0):
     return None
 
 # ── navigation ───────────────────────────────────────────────────────────────
-IN_APP = lambda s: not s.has("Top Hit") and not s.has("Suggestions") and (s.has("Ask, and watch") or s.has("NET GEX") or s.has("FAVORITES") or s.find("GEX", 0.9, 1) is not None or s.has("Heatmap"))
+IN_APP = lambda s: not s.has("Top Hit") and not s.has("Suggestions") and (s.has("Ask, and watch") or s.has("On-device") or s.has("NET GEX") or s.has("FAVORITES") or s.find("GEX", 0.9, 1) is not None or s.has("Heatmap"))
 
 def launch():
     """Get into the app. If it is already on screen do nothing; otherwise Spotlight -> tap the Top Hit icon."""
     s = look()
     if IN_APP(s): return
     for attempt in range(2):
+        s = s or look()
         if not s.has("Top Hit"):
             home(); time.sleep(1); open_app("GEX heat")
             s = wait_for(lambda s: s.has("Top Hit") or IN_APP(s), 10)
@@ -94,11 +114,21 @@ def launch():
 def close_overlay():
     """Tap the top handle of the sparkle overlay to go back to the previous screen."""
     s = look()
-    if s.has("Ask, and watch"): tap_frac(0.5, 0.108); time.sleep(1.5)
+    if s.has("Ask, and watch"): tap_frac(0.5, 0.127); time.sleep(1.5)
 
 def normalize():
     """Get the app to a known state: crosshair cleared, bottom sheet at full height (tab bar visible)."""
     s = look()
+    if s.has("On-device") and not s.has("Ask, and watch"):   # assistant overlay holding stray typed text: close it
+        check_window(); tap_frac(0.5, 0.127); time.sleep(2); s = look()
+    for _ in range(5):                                   # flow-alert sheets pop up and cover everything: drag them closed
+        tr = s.find("TRACK RECORD")
+        if tr: hy = tr[2] - 0.17                         # alert detail (full or half height): handle sits ~0.17 above this label
+        elif s.has("SWEEP") or s.has("Block"): hy = 0.495  # flow list at half height
+        else: break
+        check_window(); w = screen_info()["window"]
+        drag(w["x"] + w["w"] * 0.5, w["y"] + w["h"] * hy, w["x"] + w["w"] * 0.5, w["y"] + w["h"] * 0.97, duration=0.6)
+        time.sleep(2.5); s = look()
     for _ in range(3):
         c = s.find("Clear", 0.6, 1)
         if c: tap_frac(c[1], c[2]); time.sleep(1); s = look()
@@ -114,28 +144,34 @@ def chip_match(text, t):
     c = re.sub(r"[^A-Z]", "", text.upper())
     return c == t or (len(c) <= len(t) + 2 and (c.startswith(t) or c.endswith(t)))
 
+def to_favorites():
+    """Close whatever is open (assistant overlay, alert sheets, heatmap sheet) until the Favorites list is showing."""
+    for _ in range(8):
+        s = look()
+        sheet = any(s.has(k) for k in ("NET GEX", "Heatmap", "TRACK RECORD", "SWEEP", "On-device", "Ask, and watch", "Filter"))
+        if s.has("FAVORITES") and not sheet: return s
+        check_window(); w = screen_info()["window"]
+        if s.has("On-device") or s.has("Ask, and watch"):
+            tap_frac(0.5, 0.127); time.sleep(2); continue          # assistant overlay: tap its top handle
+        hm = next((t for t in s.items if t[0] == "Heatmap"), None)
+        tr = s.find("TRACK RECORD")
+        hy = hm[2] - 0.055 if hm else (tr[2] - 0.17 if tr else (0.495 if (s.has("SWEEP") or s.has("Block")) else None))
+        if hy is None: hy = 0.127
+        drag(w["x"] + w["w"] * 0.5, w["y"] + w["h"] * hy, w["x"] + w["w"] * 0.5, w["y"] + w["h"] * 0.97, duration=0.6)   # drag the sheet down
+        time.sleep(2.5)
+    raise RuntimeError("could not get back to the Favorites list")
+
 def goto_ticker(t):
-    s = normalize()
-    if not s.has("Ask, and watch"):
-        tap_frac(0.5, 0.936)                   # sparkle button -> ticker chips
-        s = wait_for(lambda s: s.has("Ask, and watch"), 5)
-        if not s: return None
-    time.sleep(1.5); s = look()                # let the overlay finish animating before reading chip positions
-    chip = next((x for x in s.items if 0.3 < x[2] < 0.7 and chip_match(x[0], t)), None)
-    if DEBUG: print("   chip", t, chip)
-    if not chip:
-        if DEBUG: print("   items", [(x[0], round(x[1],2), round(x[2],2)) for x in s.items][:30])
-        return None
-    tap_frac(chip[1], chip[2])
-    s = wait_for(lambda s: not s.has("Ask, and watch") and s.find("GEX", 0.9, 1) is not None, 12)
-    if DEBUG: print("   after chip: GEX tab", bool(s))
-    if not s: return None
-    g = s.find("GEX", 0.9, 1); tap_frac(g[1], g[2])
-    s = wait_for(lambda s: s.has("NET GEX") or s.find("Heatmap") is not None, 10)
-    if s and not s.has("NET GEX"):
-        h = s.find("Heatmap"); tap_frac(h[1], h[2])
-        s = wait_for(lambda s: s.has("NET GEX"), 6)
-    time.sleep(1.5)                            # let numbers settle
+    """Tap the ticker's own GEX button on the Favorites list, wait for the heatmap sheet."""
+    s = to_favorites()
+    lab = next((x for x in s.items if x[1] < 0.25 and 0.12 < x[2] < 0.95 and chip_match(x[0], t)), None)
+    if DEBUG: print("   row label", t, lab, [(x[0], round(x[1],2), round(x[2],2)) for x in s.items if x[0].upper() == 'GEX'])
+    if not lab: return None
+    btn = min((x for x in s.items if x[0].upper() == "GEX" and abs(x[2] - lab[2]) < 0.08 and x[1] < 0.6), key=lambda x: abs(x[2] - lab[2]), default=None)
+    if not btn: return None
+    tap_frac(btn[1], btn[2])
+    s = wait_for(lambda s: s.has("NET GEX"), 12)
+    time.sleep(1.5)
     return look() if s else None
 
 # ── parsing ──────────────────────────────────────────────────────────────────
@@ -157,12 +193,18 @@ def parse(shot, ticker, expiry_str):
         return c[0][0] if c else None
     net = parse_val(above("NET GEX") or "")
     cw = re.sub(r"\D", "", above("CALL WALL") or ""); pw = re.sub(r"\D", "", above("PUT WALL") or "")
-    tk = next((x for x in items if x[2] < 0.6 and x[1] < 0.4 and x[0].upper().split()[-1:] == [ticker]), None)
-    spot = None
-    for t in items:
+    hm = shot.find("Heatmap")                           # the header row (ticker, price, change) sits just above the Heatmap/Levels tabs
+    hy = hm[2] - 0.045 if hm else None
+    cand = []
+    for t in sorted(items, key=lambda t: t[1]):          # price-like numbers on that row, left to right (price comes before the change)
         m = re.match(r"(\d{1,4}\.\d\d)\b", t[0])
-        if tk and m and abs(t[2] - tk[2]) < 0.02 and t[1] > 0.4: spot = float(m.group(1)); break
+        if hy is not None and m and abs(t[2] - hy) < 0.035 and t[1] > 0.4: cand.append(float(m.group(1)))
+    spot = cand[0] if cand else None
     hdr = shot.find(expiry_str)
+    if not hdr:                                         # target expiry gone (e.g. 0DTE after the close): use the first column dated on/after it
+        tm, td = int(expiry_str[:2]), int(expiry_str[3:5])
+        cols = sorted((t for t in items if re.fullmatch(r"\d\d/\d\d", t[0]) and 0.2 < t[2] < 0.85 and t[1] < 0.9), key=lambda t: t[1])
+        hdr = next((t for t in cols if (int(t[0][:2]), int(t[0][3:5])) >= (tm, td)), None)
     strikes = {}
     if hdr:
         ladder = sorted((t for t in items if re.fullmatch(r"\d{2,4}", t[0]) and t[1] < 0.25 and 0.25 < t[2] < 0.97), key=lambda t: t[2])
@@ -179,7 +221,10 @@ def parse(shot, ticker, expiry_str):
                     elif v > 0 and sum((r_, g_, b_)) < 150 and shot.dash_left_of(c): v = -v   # faint grey minus dropped by OCR
                     if DEBUG: print("  ", t[0], c[0], "bg", shot.px(c[1] - 0.05, c[2]), shot.px(c[1] + 0.05, c[2]))
                     strikes[float(t[0])] = v
-    return net, int(cw) if cw else None, int(pw) if pw else None, spot, strikes, hdr is not None
+    if strikes and cand:
+        med = sorted(strikes)[len(strikes) // 2]
+        spot = min(cand, key=lambda v: abs(v - med))
+    return net, int(cw) if cw else None, int(pw) if pw else None, spot, strikes, (hdr[0] if hdr else None)
 
 def collect_all_strikes(ticker, exp, strikes, spot=None):
     """Scroll the whole strike ladder (to the top, then down to the bottom) and merge every strike seen,
@@ -191,7 +236,7 @@ def collect_all_strikes(ticker, exp, strikes, spot=None):
     for direction in ("up", "down"):
         prev, same = None, 0
         for _ in range(30):
-            scroll(direction, 0.4, at=at); time.sleep(1.6)
+            check_window(); scroll(direction, 0.4, at=at); time.sleep(1.6)
             sh = look()
             for k, v in parse(sh, ticker, exp)[4].items():
                 if k in allk and abs(abs(allk[k]) - abs(v)) < 1e-6 * max(abs(v), 1) and allk[k] != v:
@@ -296,13 +341,15 @@ for t in TICKERS:
         if net is None or not strikes or spot is None:
             shot = look()
             net, cw, pw, spot, strikes, found = parse(shot, t, exp)   # one re-read for OCR flakes
+        if found: exp = found                      # actual column used (may differ from target after the close)
         if strikes: strikes = collect_all_strikes(t, exp, strikes, spot)
         if net is None or not strikes or spot is None:
             raise RuntimeError(f"incomplete read (net={net}, spot={spot}, strikes={len(strikes)}, expiry col {exp} visible={found})")
         if DEBUG: print("   signed:", {int(k): round(v / 1e6, 2) for k, v in sorted(strikes.items())})
         stored["snapshots"].setdefault(t, []).append(make_entry(now, net, cw, pw, spot, strikes, exp))
-        close_overlay()
         ok_list.append(t); print(f"OK   {t} {exp} spot {spot} net {net/1e6:.0f}M cw {cw} pw {pw} strikes {len(strikes)}")
+    except WindowChanged:
+        raise                                    # abort the whole run: never write/push a page from a moved window
     except Exception as e:
         failed.append(t); print(f"FAIL {t}: {e}")
 if ok_list:
