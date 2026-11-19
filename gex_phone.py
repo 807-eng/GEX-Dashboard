@@ -163,16 +163,24 @@ def to_favorites():
 
 def goto_ticker(t):
     """Tap the ticker's own GEX button on the Favorites list, wait for the heatmap sheet."""
-    s = to_favorites()
+    to_favorites(); time.sleep(1.5); s = look()          # list may still be animating after a sheet closes
     lab = next((x for x in s.items if x[1] < 0.25 and 0.12 < x[2] < 0.95 and chip_match(x[0], t)), None)
     if DEBUG: print("   row label", t, lab, [(x[0], round(x[1],2), round(x[2],2)) for x in s.items if x[0].upper() == 'GEX'])
     if not lab: return None
-    btn = min((x for x in s.items if x[0].upper() == "GEX" and abs(x[2] - lab[2]) < 0.08 and x[1] < 0.6), key=lambda x: abs(x[2] - lab[2]), default=None)
-    if not btn: return None
-    tap_frac(btn[1], btn[2])
+    # The row's GEX button sits ~0.02 above the ticker label, at the same x on every row (OCR often misses an individual GEX label)
+    gx = sorted(x[1] for x in s.items if x[0].upper() == "GEX" and x[1] < 0.6)
+    btn = (gx[len(gx) // 2] if gx else 0.445, lab[2] - 0.022)
+    tap_frac(btn[0], btn[1])
     s = wait_for(lambda s: s.has("NET GEX"), 12)
     time.sleep(1.5)
-    return look() if s else None
+    if not s: return None
+    s = look()
+    hm = s.find("Heatmap")
+    hdr_tk = [x for x in s.items if hm and abs(x[2] - (hm[2] - 0.045)) < 0.035 and x[1] < 0.4 and chip_match(x[0], t)]
+    if not hdr_tk:
+        if DEBUG: print("   wrong sheet opened for", t)
+        return None
+    return s
 
 # ── parsing ──────────────────────────────────────────────────────────────────
 VAL = re.compile(r"^([-–−+])?\s*(\d+(?:\.\d+)?)([MKB])$")
@@ -191,7 +199,11 @@ def parse(shot, ticker, expiry_str):
         if not l: return None
         c = [t for t in items if abs(t[1] - l[1]) < 0.12 and 0 < l[2] - t[2] < 0.05]
         return c[0][0] if c else None
-    net = parse_val(above("NET GEX") or "")
+    nraw = above("NET GEX") or ""
+    net = parse_val(nraw)
+    if net is None:                                      # small values print as plain dollars, e.g. -$458,000
+        mm = re.fullmatch(r"([-–−+])?\s*\$?\s*(\d[\d,]*(?:\.\d+)?)", nraw.replace(" ", ""))
+        if mm: net = (-1 if mm.group(1) in ("-", "–", "−") else 1) * float(mm.group(2).replace(",", ""))
     cw = re.sub(r"\D", "", above("CALL WALL") or ""); pw = re.sub(r"\D", "", above("PUT WALL") or "")
     hm = shot.find("Heatmap")                           # the header row (ticker, price, change) sits just above the Heatmap/Levels tabs
     hy = hm[2] - 0.045 if hm else None
