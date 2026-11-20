@@ -115,6 +115,10 @@ IN_APP = lambda s: not s.has("Top Hit") and not s.has("Suggestions") and (s.has(
 def launch():
     """Get into the app. If it is already on screen do nothing; otherwise Spotlight -> tap the Top Hit icon."""
     s = look()
+    for _ in range(3):                                   # Mirroring pauses itself when idle: tap Resume
+        r = s.find("Resume")
+        if not (r and s.has("Paused")): break
+        tap_frac(r[1], r[2]); time.sleep(6); s = look()
     if IN_APP(s): return
     for attempt in range(2):
         s = s or look()
