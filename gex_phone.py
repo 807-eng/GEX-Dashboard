@@ -410,7 +410,7 @@ def read_ticker(t):
     strikes = collect_all_strikes(t, exp, strikes, spot)
     if len(strikes) < 3: raise RuntimeError(f"only {len(strikes)} strikes after scrolling")
     if DEBUG: print("   signed:", {k: round(v / 1e6, 2) for k, v in sorted(strikes.items())})
-    print(f"OK   {t} {exp} spot {spot} net {net/1e6:.0f}M cw {cw} pw {pw} strikes {len(strikes)}")
+    print(f"OK   [{time.time()-t0:.0f}s] {t} {exp} spot {spot} net {net/1e6:.0f}M cw {cw} pw {pw} strikes {len(strikes)}")
     return make_entry(datetime.now(), net, cw, pw, spot, strikes, exp)
 
 entries, failed = {}, []
@@ -421,7 +421,7 @@ for t in TICKERS:
         except WindowChanged:
             raise                                        # abort the whole run: never write/push a page from a moved window
         except Exception as e:
-            print(f"FAIL {t} (attempt {attempt}): {e}")
+            print(f"FAIL [{time.time()-t0:.0f}s] {t} (attempt {attempt}): {e}")
     else:
         failed.append(t)
 
