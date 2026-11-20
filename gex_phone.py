@@ -305,6 +305,7 @@ def collect_all_strikes(ticker, exp, strikes, spot=None):
             same = same + 1 if lab == prev else 0
             if same >= 2: break
             prev = lab
+        print(f"   scroll {direction}: {_ + 1} steps, same={same}")
         normalize()                                     # overscrolling past the top/bottom can collapse the sheet: re-expand
     for k1 in list(allk):                               # OCR misreads one digit of a strike label (360 -> 260): same value, labels 100 apart
         for k2 in list(allk):
