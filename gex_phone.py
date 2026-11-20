@@ -302,9 +302,11 @@ def collect_all_strikes(ticker, exp, strikes, spot=None):
                     v = -abs(v)                            # same strike read twice with different signs: a dropped minus is the usual error
                 allk[k] = v
             lab = labels(sh)
-            same = same + 1 if lab == prev else 0
+            ks = [float(x) for x in lab if not spot or abs(float(x) - spot) / spot <= 0.30]   # drop OCR junk / the price
+            ext = (max(ks) if direction == "up" else min(ks)) if ks else None             # strike at the edge we are scrolling toward
+            same = same + 1 if ext is not None and ext == prev else 0                       # edge no longer moves = end of the ladder
             if same >= 2: break
-            prev = lab
+            prev = ext
         print(f"   scroll {direction}: {_ + 1} steps, same={same}")
         normalize()                                     # overscrolling past the top/bottom can collapse the sheet: re-expand
     for k1 in list(allk):                               # OCR misreads one digit of a strike label (360 -> 260): same value, labels 100 apart
