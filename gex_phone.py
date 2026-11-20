@@ -30,8 +30,6 @@ def fix_window(target_w=460):
     w = screen_info()["window"]
     return (w["w"], w["h"]), tuple(screen_info()["img_px"])
 
-BASE, IMG = fix_window()
-
 def check_window():
     w = screen_info()["window"]
     if abs(w["w"] - BASE[0]) > 3 or abs(w["h"] - BASE[1]) > 3:
@@ -97,6 +95,17 @@ class Shot:
 
 def look():
     time.sleep(0.4); return Shot(screenshot())
+
+def resume_if_paused():
+    """Mirroring pauses itself when idle and its View menu then hangs: tap Resume first (raw window coords, no BASE needed)."""
+    for _ in range(3):
+        s = Shot(screenshot()); r = s.find("Resume")
+        if not (r and s.has("Paused")): return
+        info = screen_info(); tap_image_point(r[1] * info["img_px"][0], r[2] * info["img_px"][1], image_size=tuple(info["img_px"]))
+        time.sleep(6)
+
+resume_if_paused()
+BASE, IMG = fix_window()
 
 def tap_frac(x, y):
     check_window(); tap_image_point(x * IMG[0], y * IMG[1], image_size=IMG)
