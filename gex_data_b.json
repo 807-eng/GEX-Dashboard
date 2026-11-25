@@ -265,6 +265,28 @@
         "mp": 495.0,
         "cw": 495.0,
         "pw": 490.0
+      },
+      {
+        "time": "08:01",
+        "spot": 478.26,
+        "gex_display": -15.8,
+        "gex_unit": "M",
+        "gex_at": 470.0,
+        "gex2_display": -10.5,
+        "gex2_unit": "M",
+        "gex2_at": 480.0,
+        "gex3_display": -7.9,
+        "gex3_unit": "M",
+        "gex3_at": 490.0,
+        "net_gamma_display": -72.2,
+        "net_gamma_unit": "M",
+        "call_gamma_display": 14.0,
+        "call_gamma_unit": "M",
+        "put_gamma_display": -86.2,
+        "put_gamma_unit": "M",
+        "mp": 495.0,
+        "cw": 495.0,
+        "pw": 470.0
       }
     ],
     "AMZN": [
@@ -530,6 +552,28 @@
         "put_gamma_unit": "M",
         "mp": 247.5,
         "cw": 247.5,
+        "pw": 240.0
+      },
+      {
+        "time": "08:01",
+        "spot": 237.0,
+        "gex_display": -15.1,
+        "gex_unit": "M",
+        "gex_at": 240.0,
+        "gex2_display": -7.1,
+        "gex2_unit": "M",
+        "gex2_at": 237.5,
+        "gex3_display": -3.2,
+        "gex3_unit": "M",
+        "gex3_at": 245.0,
+        "net_gamma_display": -37.3,
+        "net_gamma_unit": "M",
+        "call_gamma_display": 3.2,
+        "call_gamma_unit": "M",
+        "put_gamma_display": -40.4,
+        "put_gamma_unit": "M",
+        "mp": 220.0,
+        "cw": 272.5,
         "pw": 240.0
       }
     ],
@@ -797,6 +841,28 @@
         "mp": 126.0,
         "cw": 126.0,
         "pw": 115.0
+      },
+      {
+        "time": "08:01",
+        "spot": 116.94,
+        "gex_display": -3.8,
+        "gex_unit": "M",
+        "gex_at": 120.0,
+        "gex2_display": -3.4,
+        "gex2_unit": "M",
+        "gex2_at": 115.0,
+        "gex3_display": -1.1,
+        "gex3_unit": "M",
+        "gex3_at": 125.0,
+        "net_gamma_display": -15.3,
+        "net_gamma_unit": "M",
+        "call_gamma_display": 1.8,
+        "call_gamma_unit": "M",
+        "put_gamma_display": -17.1,
+        "put_gamma_unit": "M",
+        "mp": 126.0,
+        "cw": 126.0,
+        "pw": 120.0
       }
     ]
   }
